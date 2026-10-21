@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #F2F0E9;
+    --bg-secondary: #EAE7E0;
+    --bg-card: #FFFFFF;
+    --text-primary: #111110;
+    --text-secondary: #77736D;
+    --text-muted: #A8A39A;
+    --border-subtle: rgba(36, 35, 33, 0.12);
+    --border-strong: rgba(36, 35, 33, 0.28);
+    --accent-dark: #242321;
+    --accent-bronze: #A38342;
+    --color-sculpture-primary: #242321;
+    --color-sculpture-secondary: #C59B27;
+  }
+
+  .dark {
+    --bg-primary: #111110;
+    --bg-secondary: #1A1918;
+    --bg-card: #201F1D;
+    --text-primary: #F2F0E9;
+    --text-secondary: #A8A39A;
+    --text-muted: #77736D;
+    --border-subtle: rgba(242, 240, 233, 0.12);
+    --border-strong: rgba(242, 240, 233, 0.28);
+    --accent-dark: #F2F0E9;
+    --accent-bronze: #D4AF37;
+    --color-sculpture-primary: #F2F0E9;
+    --color-sculpture-secondary: #C59B27;
+  }
+
+  * {
+    border-color: var(--border-subtle);
+  }
+
+  html {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* Custom font utility classes */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Manrope', sans-serif;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom hairline borders and subtle aesthetics */
+.border-hairline {
+  border-width: 1px;
+  border-color: var(--border-subtle);
+}
+
+.border-b-hairline {
+  border-bottom-width: 1px;
+  border-bottom-color: var(--border-subtle);
+}
+
+.border-t-hairline {
+  border-top-width: 1px;
+  border-top-color: var(--border-subtle);
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(119, 115, 109, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(119, 115, 109, 0.5);
+}
+
+/* Noise texture overlay for high-end editorial feel */
+.bg-noise {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}

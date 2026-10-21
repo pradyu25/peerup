@@ -1,0 +1,6 @@
+{
+  "name": "PeerUp Collective",
+  "description": "An independent creative and technology collective combining design, software engineering, and emerging technology to build meaningful digital products, intelligent software, and distinctive experiences.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

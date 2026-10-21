@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 32" fill="none">
+  <text x="0" y="24" font-family="'Manrope', -apple-system, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.02em" fill="currentColor">PEERUP</text>
+  <circle cx="120" cy="11" r="5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+  <text x="120" y="13.5" font-family="'Manrope', sans-serif" font-size="6.5" font-weight="700" text-anchor="middle" fill="currentColor">R</text>
+</svg>

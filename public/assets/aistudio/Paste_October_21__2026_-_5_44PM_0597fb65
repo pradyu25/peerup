@@ -1,0 +1,1037 @@
+# MASTER BUILD PROMPT — PEERUP COLLECTIVE
+
+## 1. ROLE AND OBJECTIVE
+
+Act as a world-class creative director, award-winning digital designer, senior frontend architect, creative developer, and motion-design engineer.
+
+Design and build a complete, production-quality website for **PeerUp Collective**, an independent creative and technology collective working at the intersection of design, software engineering, AI, digital experiences, and automation.
+
+Build a visually exceptional website from scratch, using the provided reference images as the primary art-direction guide.
+
+The result should feel like a bespoke digital experience from a premium international creative studio—not a generic agency template, SaaS dashboard, AI startup landing page, or collection of prebuilt UI components.
+
+The website must combine:
+
+- Premium editorial art direction.
+- Experimental ASCII and generative digital art.
+- Three-dimensional sculptural visuals.
+- Sophisticated scroll-driven storytelling.
+- Large-scale typography with elegant serif contrast.
+- Minimal, carefully designed navigation.
+- Exceptional page transitions and microinteractions.
+- Distinct layouts for different content sections.
+- A functional light/dark mode toggle.
+- Responsive, accessible, production-ready implementation.
+
+The primary design principle is:
+
+**Matter becomes meaning. Ideas become experiences.**
+
+Do not simply reproduce the reference screenshots. Use them to establish the visual language, then create an original and coherent PeerUp identity.
+
+---
+
+## 2. BRAND IDENTITY
+
+Brand name: PeerUp Collective
+
+Primary wordmark: PEERUP
+
+Secondary brand descriptor: COLLECTIVE
+
+Brand positioning:
+
+An independent creative and technology collective combining design, engineering, and emerging technology to build meaningful digital products, intelligent software, distinctive identities, and useful experiences.
+
+Brand personality:
+
+- Intelligent.
+- Experimental.
+- Refined.
+- Curious.
+- Technically capable.
+- Human-centered.
+- Confident without being loud.
+- Premium without being inaccessible.
+
+Brand statement:
+
+“We make ideas move.”
+
+Alternative supporting statement:
+
+“Design, engineering, and emerging technology—working together to create what comes next.”
+
+Avoid generic marketing language such as “innovative solutions,” “revolutionizing the future,” “your one-stop solution,” and “cutting-edge excellence.”
+
+Use concise, confident, editorial copy.
+
+Do not invent client names, testimonials, awards, project metrics, partnerships, or business statistics. If real project information is unavailable, use clearly labeled concept projects or placeholders that can be replaced later.
+
+---
+
+## 3. VISUAL DIRECTION
+
+Use the supplied website screenshots and generated PeerUp concepts as the principal visual references.
+
+The site should have the visual restraint of a premium design studio and the technical sophistication of an experimental digital-art portfolio.
+
+### Core color palette
+
+Use these colors consistently across the website.
+
+- Warm ivory: #F2F0E9
+- Soft paper: #EAE7E0
+- Pale stone: #D9D5CC
+- Warm gray: #A8A39A
+- Mid graphite: #77736D
+- Charcoal: #242321
+- Deep black: #111110
+- Pure white: #FFFFFF
+
+Use warm ivory as the primary light theme background, near-black for primary text, muted gray for secondary information, and fine neutral borders.
+
+The dark theme should use deep charcoal backgrounds, soft ivory text, muted gray dividers, and restrained warm metallic highlights.
+
+Do not introduce neon green, bright purple, saturated blue, or unrelated accent colors. Preserve the neutral ivory, graphite, black, and muted bronze identity of the supplied references.
+
+### Color usage
+
+Use approximately:
+
+- 70% warm neutral backgrounds.
+- 20% dark typography and dark feature panels.
+- 10% imagery, gradients, and sculptural visual details.
+
+This is an art-direction guideline, not a rigid requirement.
+
+### Typography
+
+Use a premium editorial typography system.
+
+Suggested pairing:
+
+- Display sans-serif: Manrope, Geist, or a comparable modern grotesk.
+- Editorial serif: Instrument Serif, Cormorant Garamond, or a comparable refined serif.
+- Small technical labels: Geist Mono or another restrained monospace.
+
+Use the display sans-serif for bold headlines and navigation. Use the serif italic face selectively for expressive words such as “move,” “matter,” “forward,” and “possibility.”
+
+Use wide tracking for small uppercase labels and section identifiers.
+
+Headlines should be large, precisely composed, and responsive. Use fluid typography with clamp() and avoid arbitrary line breaks that cause problems on mobile.
+
+### Layout
+
+- Generous whitespace.
+- Precise alignment and grid systems.
+- Thin horizontal and vertical rules.
+- Small technical labels.
+- Carefully controlled asymmetry.
+- Large visual focal points.
+- Editorial two-column layouts.
+- Selective full-width imagery.
+- Restrained corner radii.
+- Minimal shadows.
+- No excessive cards or boxed content.
+
+The site must feel deliberately art-directed at every viewport size.
+
+---
+
+## 4. LOGO INTEGRATION
+
+I will provide the final PeerUp Collective logo asset separately.
+
+Create an organized asset location such as:
+
+/public/images/peerup-logo.png
+
+Use the actual file I provide. Do not recreate, redraw, replace, or approximate the logo with a text-based imitation.
+
+If the file has a transparent background, preserve its transparency.
+
+If multiple logo variants are provided, use the appropriate variant for the light and dark themes.
+
+If only one variant is available, preserve the original logo and create a suitable CSS-backed container or neutral placement around it. Do not apply CSS filters that distort its intended appearance.
+
+Requirements:
+
+- Use the logo in the navigation.
+- Use a larger logo treatment in the footer where appropriate.
+- Maintain its aspect ratio.
+- Do not crop the emblem or wordmark.
+- Do not stretch or distort the artwork.
+- Provide appropriate alternative text.
+- Make the navigation logo link to the homepage.
+- Use a simplified brand mark as a favicon only if a suitable icon asset is available.
+
+The hero's oversized background typography may use a separate text treatment, but it must not be presented as a replacement for the official logo.
+
+---
+
+## 5. TECHNICAL ARCHITECTURE
+
+First inspect the existing repository and determine its framework, dependencies, directory structure, styling system, and available assets.
+
+If the repository is empty, establish a clean project structure.
+
+If it contains an existing application, preserve useful infrastructure and avoid destructive rewrites until the structure is understood.
+
+Preferred stack:
+
+- Next.js with the App Router.
+- React.
+- TypeScript.
+- Tailwind CSS.
+- Framer Motion for interface and component animations.
+- GSAP and ScrollTrigger for advanced scroll choreography.
+- Three.js with React Three Fiber for custom generative 3D scenes where appropriate.
+- Lucide icons for simple interface icons.
+
+Use CSS and SVG for lightweight effects whenever a full WebGL scene is unnecessary.
+
+Do not add every library automatically. Select the smallest practical combination that supports the intended experience.
+
+Use strict TypeScript, reusable components, consistent design tokens, and a clear separation between content, presentation, animation logic, and interactive state.
+
+Suggested structure:
+
+app/
+  layout.tsx
+  page.tsx
+  globals.css
+  work/
+    page.tsx
+  studio/
+    page.tsx
+  approach/
+    page.tsx
+  journal/
+    page.tsx
+  contact/
+    page.tsx
+
+components/
+  navigation/
+    SiteHeader.tsx
+    FullscreenNavigation.tsx
+    ThemeToggle.tsx
+  hero/
+    HeroSection.tsx
+    GenerativeSculpture.tsx
+    HeroTypography.tsx
+  sections/
+    SelectedWork.tsx
+    ServicesSection.tsx
+    StudioSection.tsx
+    ApproachSection.tsx
+    JournalSection.tsx
+    ContactSection.tsx
+  motion/
+    PageTransition.tsx
+    ScrollReveal.tsx
+    MotionProvider.tsx
+  ui/
+    Button.tsx
+    Container.tsx
+    SectionLabel.tsx
+  footer/
+    SiteFooter.tsx
+
+lib/
+  motion.ts
+  theme.ts
+  site-content.ts
+
+public/
+  images/
+  models/
+  textures/
+
+Adapt the structure to the existing repository where necessary. Do not create unnecessary abstractions or duplicate components.
+
+---
+
+## 6. NAVIGATION SYSTEM
+
+Use the previously supplied Immersive Full Screen Navigation React component as the starting reference.
+
+Locate and inspect the provided component before implementation. Adapt its existing behavior rather than creating a visually unrelated navigation system.
+
+If the component is compatible with the repository, preserve and improve its functionality.
+
+If it is incompatible, port its design and interaction principles into the existing stack.
+
+### Desktop header
+
+Create a minimalist header inspired by the reference screenshots.
+
+Left:
+- PeerUp logo.
+
+Right:
+- Work.
+- Studio.
+- Approach.
+- Journal.
+- Theme toggle.
+- Contact.
+
+Use generous horizontal spacing, restrained typography, and minimal visual decoration.
+
+The header should feel integrated into the page rather than like a conventional navigation bar.
+
+On the light theme, use dark text against warm ivory. On the dark theme, use ivory text against charcoal.
+
+### Fullscreen navigation overlay
+
+The menu must open as a deliberate, full-screen experience.
+
+Its visual direction should use a deep charcoal or near-black background, warm ivory typography, thin neutral rules, and a subtle generative visual.
+
+Layout:
+
+- Logo in the upper-left corner.
+- Close control in the upper-right corner.
+- Large numbered navigation links.
+- Small studio descriptor on the left.
+- Abstract ASCII or particle sculpture on the right.
+- Studio location and a concise brand statement near the bottom.
+
+Navigation items:
+
+01 — Work
+02 — Studio
+03 — Approach
+04 — Journal
+05 — Contact
+
+Use large editorial typography. A refined serif face may contrast with the sans-serif used elsewhere.
+
+### Menu animation
+
+On opening:
+
+1. Reveal the overlay with a smooth clip-path or mask transition.
+2. Stagger the navigation links.
+3. Reveal the supporting labels.
+4. Introduce the generative visual with a subtle delay.
+5. Keep the animation controlled and relatively short.
+
+On closing, reverse the sequence smoothly.
+
+Interaction requirements:
+
+- Escape closes the menu.
+- Clicking a navigation link closes the menu and navigates correctly.
+- The close button is functional.
+- Keyboard focus is trapped inside the open menu.
+- Focus returns to the menu trigger when closed.
+- Background scrolling is disabled while the menu is open.
+- Touch interactions work on mobile.
+- Reduced-motion preferences are respected.
+- All controls have appropriate accessible labels.
+
+Do not use a custom cursor as a substitute for accessible pointer and keyboard interactions.
+
+---
+
+## 7. LIGHT AND DARK MODE
+
+Implement a real, working theme toggle inspired by the small circular moon button in the reference screenshot.
+
+This is a required feature.
+
+### Toggle appearance
+
+Create a small circular button with:
+
+- Thin neutral border.
+- Minimal moon or sun icon.
+- Precisely centered icon.
+- Subtle hover transition.
+- Restrained focus indicator.
+- Consistent sizing and alignment with the header.
+
+The control should visually resemble a premium physical dial or small outlined instrument rather than a large pill-shaped switch.
+
+### Behavior
+
+- Toggle between light and dark themes.
+- Animate the icon subtly.
+- Transition background and text colors smoothly.
+- Preserve readable contrast across every section.
+- Apply the selected theme to the navigation overlay, buttons, borders, forms, and footer.
+- Persist the user's preference using a suitable client-side mechanism.
+- Respect the operating system preference on the first visit when no preference has been saved.
+- Avoid visible theme flashing during initial page load.
+- Avoid hydration errors.
+
+Use CSS custom properties or a consistent token system rather than scattered hardcoded theme conditions.
+
+Keep the generative artwork legible in both themes. Do not simply invert the entire image if that damages its appearance.
+
+---
+
+## 8. HOMEPAGE HERO
+
+The hero is the main visual statement of the website.
+
+It should closely follow the supplied PeerUp hero reference in composition and visual mood, while using original implementation and motion.
+
+### Composition
+
+At the top:
+
+- Minimal navigation.
+- Logo on the left.
+- Primary links and circular theme toggle on the right.
+
+In the upper-middle region:
+
+- A large, sculptural, ASCII-inspired generative artwork.
+- The artwork should feel dimensional, fluid, organic, and technically intricate.
+- Place faint oversized PEERUP typography behind the visual where it improves the composition.
+- Preserve generous space around the artwork.
+
+In the lower region:
+
+Left column:
+- Small uppercase descriptor: INDEPENDENT CREATIVE TECHNOLOGY COLLECTIVE.
+- Main headline: “We make ideas” followed by the italic serif word “move.”
+- Bold, expressive display typography.
+
+Right column:
+- Concise description of PeerUp.
+- Primary CTA: “Start a project.”
+- Secondary CTA: “View our work.”
+- Small numbered progress indicators or editorial markers if they improve the composition.
+
+At the bottom:
+- Small location and studio metadata.
+- Thin horizontal rule.
+- “Scroll to explore” label with a restrained downward indicator.
+
+Use Hyderabad, India only as the studio location if it is appropriate for the actual business details.
+
+### Hero headline
+
+Use:
+
+“We make ideas
+move.”
+
+Supporting copy:
+
+“We combine design, engineering, and emerging technology to build digital products, distinctive brands, and meaningful experiences for a more ambitious tomorrow.”
+
+Primary CTA:
+“Start a project”
+
+Secondary CTA:
+“View our work”
+
+### Generative artwork
+
+The centerpiece must be an original visual experience.
+
+Create a flowing, sculptural ribbon or intertwined form built from a combination of:
+
+- ASCII characters.
+- Tiny particles.
+- Fine wireframe lines.
+- Dotted halftone structures.
+- Subtle metallic gradients.
+- Procedural curves.
+- Three-dimensional depth.
+- Delicate highlights.
+
+Use a warm neutral palette: ivory, graphite, charcoal, muted bronze, and warm gray.
+
+The artwork should feel like a sophisticated physical sculpture rendered through typography and data.
+
+Do not use an ordinary stock image as the final hero centerpiece.
+
+Do not rely on the generated screenshot as the animation itself.
+
+Use the screenshot only as a reference. Build the actual visual using WebGL, canvas, SVG, shaders, procedural geometry, or a combination of these techniques.
+
+### Hero interaction
+
+- Slow, organic idle movement.
+- Subtle pointer-based parallax.
+- Gentle changes in particle positions.
+- Controlled depth and lighting.
+- A restrained response to pointer movement.
+- Smooth integration with the scroll timeline.
+
+Avoid violent deformation, excessive spinning, distracting flashes, or unnecessary camera movement.
+
+The artwork should remain elegant when the user does not interact.
+
+On mobile, use a lighter version with reduced particle counts and simplified interactions.
+
+---
+
+## 9. SCROLL-DRIVEN STORYTELLING
+
+The homepage must not feel like a sequence of unrelated static sections.
+
+Use a coherent visual narrative that evolves as the visitor scrolls.
+
+### Scene 1 — Form
+
+The hero sculpture moves slowly and reacts to the cursor.
+
+The main headline reveals through a controlled stagger.
+
+The lower metadata fades into place.
+
+### Scene 2 — Fragment
+
+As the visitor scrolls, the sculpture begins to dissolve into characters, dots, and thin lines.
+
+The movement should feel like the sculpture is changing state rather than disappearing abruptly.
+
+The headline and surrounding layout transition with it.
+
+### Scene 3 — Reconstruct
+
+Characters align into a grid, diagram, or typographic composition.
+
+Introduce the studio's capabilities through a new layout.
+
+Use small technical labels, fine lines, and clear typography.
+
+### Scene 4 — Selected work
+
+The abstract visual language gives way to tangible projects.
+
+Images expand or transition into place as the visitor reaches the portfolio.
+
+### Scene 5 — Contact
+
+The visual intensity gradually settles.
+
+Use a strong closing statement and a simple enquiry action.
+
+### Animation implementation
+
+Use GSAP ScrollTrigger for complex scroll sequences and pinned scenes where appropriate.
+
+Use Framer Motion for smaller component transitions.
+
+Requirements:
+
+- Avoid unnecessary scroll hijacking.
+- Keep the page usable with normal scrolling.
+- Ensure pinned scenes do not become frustrating on mobile.
+- Clean up animation timelines and event listeners.
+- Avoid layout shifts.
+- Ensure the website still makes sense if animations fail.
+- Respect reduced-motion preferences.
+- Keep animations smooth on average consumer hardware.
+
+Use scroll-driven motion to support the narrative, not merely to show off effects.
+
+---
+
+## 10. SELECTED WORK SECTION
+
+This section must look different from the hero.
+
+Do not repeat the same giant sculpture and two-column hero layout.
+
+Use a clean editorial portfolio layout with large image compositions, varying image proportions, carefully placed metadata, and generous spacing.
+
+Section label:
+SELECTED WORK
+
+Headline:
+“Work that moves things forward.”
+
+Supporting copy:
+“A selection of projects where design, engineering, and emerging technology come together to create meaningful outcomes.”
+
+Potential concept-project categories:
+
+- Digital products.
+- AI and automation.
+- Brand identities.
+- Web experiences.
+- Custom software.
+- Creative technology.
+
+If actual project assets exist in the repository, use them.
+
+Otherwise, use clearly identified concept imagery and editable project data. Do not invent real client relationships or performance statistics.
+
+Each project should have:
+
+- Project name.
+- Category.
+- Year where known.
+- Short description.
+- Strong visual.
+- Subtle hover animation.
+- A clear link to the case study or project details.
+
+Use an asymmetric grid with two or three featured projects. Introduce image transitions, subtle scale changes, and restrained typography movement.
+
+Provide a category filter only if there is enough content to make it useful.
+
+---
+
+## 11. TOOLS AND DIGITAL PRODUCTS
+
+Create a distinct section for tools and products developed by PeerUp.
+
+Do not make this section look like a SaaS dashboard.
+
+Design direction:
+
+- Editorial typography.
+- Large visual product demonstrations.
+- Neutral backgrounds.
+- Minimal interface previews.
+- Subtle technical diagrams.
+- Product-specific imagery.
+- Carefully designed metadata.
+
+Section headline:
+
+“Useful tools. Thoughtfully made.”
+
+Supporting copy:
+
+“Focused products designed to solve real problems through thoughtful engineering and considered design.”
+
+Represent available products using real repository information or clearly labeled placeholders.
+
+A product entry should support:
+
+- Product name.
+- Short explanation.
+- Product category.
+- Visual preview.
+- Product link or waitlist action where applicable.
+
+Use a distinct layout from the hero and portfolio.
+
+---
+
+## 12. CUSTOM SOFTWARE SECTION
+
+Create a dedicated section for PeerUp's custom software engineering capabilities.
+
+Section headline:
+
+“Software that fits forward.”
+
+Supporting copy:
+
+“Purpose-built software designed around real workflows, practical constraints, and what comes next.”
+
+Show capabilities such as:
+
+- Web application development.
+- Internal tools and business systems.
+- Workflow automation.
+- AI-assisted applications.
+- API integrations.
+- Custom dashboards and operational software.
+
+Do not simply list these as generic cards.
+
+Use a combination of editorial text, a technical visual, and a structured capabilities list.
+
+The visual may use layered architectural forms, schematic lines, interface fragments, or a dimensional typographic grid.
+
+The section should feel technical but approachable.
+
+Include a clear CTA to discuss a custom software project.
+
+---
+
+## 13. SERVICES SECTION
+
+Present four core service areas.
+
+01 — Brand and Design
+
+Identity systems, visual direction, brand applications, and digital design.
+
+02 — Web and Digital Experiences
+
+Responsive websites, interactive experiences, and digital products.
+
+03 — AI and Automation
+
+Intelligent workflows, AI-assisted systems, and useful automation.
+
+04 — Custom Software
+
+Purpose-built applications, integrations, internal tools, and software platforms.
+
+Use a clean, editorial service list rather than four identical cards.
+
+On hover or focus, reveal a related visual, short description, or subtle transition.
+
+Keep interactions accessible and ensure content remains visible on touch devices.
+
+The service section should feel organized, confident, and minimal.
+
+---
+
+## 14. STUDIO SECTION
+
+Use a distinct editorial layout to introduce PeerUp Collective.
+
+Section label:
+THE STUDIO
+
+Headline:
+“A collective for what's next.”
+
+Supporting copy:
+
+“PeerUp Collective brings design, software engineering, and emerging technology together to turn ambitious ideas into meaningful products and experiences.”
+
+Explain the studio's approach to collaboration, problem-solving, design, and engineering.
+
+Do not invent team members, biographies, client lists, office photographs, or awards.
+
+Use a restrained visual composition that may incorporate the brand emblem, a sculptural form, or a diagram connecting design, engineering, and AI.
+
+The section should feel personal and thoughtful, not corporate.
+
+---
+
+## 15. APPROACH SECTION
+
+Section label:
+OUR APPROACH
+
+Headline:
+“From idea to impact.”
+
+Show a four-stage process.
+
+01 — Discover
+
+Understand the opportunity, the users, and the real problem.
+
+02 — Design
+
+Shape the experience, architecture, and direction.
+
+03 — Build
+
+Engineer the product, system, or experience.
+
+04 — Refine
+
+Test, improve, and prepare the result for real use.
+
+Use an editorial numbered list, subtle connecting lines, and small visual transitions.
+
+The content should be easy to scan.
+
+Do not use a generic horizontal four-card process component.
+
+---
+
+## 16. JOURNAL SECTION
+
+Create a restrained editorial journal for thoughts on design, software, AI, technology, and creative practice.
+
+Section headline:
+
+“Ideas, processes, and perspectives.”
+
+Use a distinct magazine-like layout with selected article imagery, concise headlines, categories, and publication dates when available.
+
+Do not fabricate published articles, authors, or dates as if they are real.
+
+If the journal is not yet populated, create clearly marked draft or sample content in a centralized data file.
+
+Keep the page lightweight and readable.
+
+---
+
+## 17. CONTACT SECTION
+
+The contact section should be a memorable closing scene.
+
+Use a contrasting dark panel or a carefully art-directed neutral background.
+
+Headline:
+
+“Have something worth building?”
+
+Supporting copy:
+
+“Tell us about your idea, your project, or your challenge. We'd love to explore how we can work together.”
+
+Primary CTA:
+“Start a conversation”
+
+Include a configurable email address rather than inventing one.
+
+The contact form, if implemented, must include:
+
+- Name.
+- Email.
+- Project type.
+- Message.
+- Validation.
+- Clear submission feedback.
+- Accessible labels.
+- A real backend or service integration if submission is expected to work.
+
+If no backend is configured, clearly communicate that the form is a frontend prototype and provide a working email-link fallback.
+
+Do not show fake success messages for submissions that have not actually been delivered.
+
+---
+
+## 18. FOOTER
+
+Create a premium, minimal footer with:
+
+- PeerUp logo.
+- Concise studio description.
+- Navigation links.
+- Configurable email contact.
+- Social links only where real URLs are available.
+- Location information where appropriate.
+- Copyright year generated dynamically.
+- A restrained final brand statement.
+
+Consider a large PEERUP typographic treatment at the bottom.
+
+Use a subtle reveal animation and fine neutral dividers.
+
+Do not fill the footer with unnecessary widgets, large link collections, or decorative cards.
+
+---
+
+## 19. PAGE TRANSITIONS AND MICROINTERACTIONS
+
+Implement a consistent motion language across the site.
+
+Use:
+
+- Text reveals with controlled stagger.
+- Image masks and clip-path transitions.
+- Gentle hover-based image movement.
+- Smooth navigation overlay transitions.
+- Underline animations on text links.
+- Small directional arrow movements on buttons.
+- Subtle changes in opacity and position.
+- Carefully timed section introductions.
+- Smooth theme transitions.
+- An optional custom page transition between routes.
+
+Avoid:
+
+- Excessive parallax.
+- Constantly moving every element.
+- Large bounce animations.
+- Unnecessary blur effects.
+- Flashing or strobing visuals.
+- A custom cursor that interferes with usability.
+- Forced scrolling.
+- Animations that delay access to content.
+
+Motion should feel precise, restrained, and intentional.
+
+---
+
+## 20. RESPONSIVE DESIGN
+
+Design intentionally for:
+
+- Large desktop screens.
+- Standard desktop and laptops.
+- Tablets.
+- Mobile phones.
+
+Desktop:
+
+Use the full editorial grid, generous whitespace, detailed generative sculpture, and sophisticated motion.
+
+Tablet:
+
+Reduce visual complexity, adapt column layouts, and preserve the primary hierarchy.
+
+Mobile:
+
+- Simplify the header.
+- Use the fullscreen navigation.
+- Reduce the sculpture's complexity.
+- Reflow headlines naturally.
+- Avoid horizontal overflow.
+- Avoid long pinned scroll sequences.
+- Keep CTAs easy to tap.
+- Make all hover-dependent content accessible.
+- Preserve the visual identity without shrinking the desktop layout mechanically.
+
+Test narrow viewport sizes and long text.
+
+---
+
+## 21. PERFORMANCE AND ACCESSIBILITY
+
+Treat performance and accessibility as part of the design.
+
+Requirements:
+
+- Semantic HTML.
+- Accessible navigation and buttons.
+- Visible keyboard focus.
+- Sufficient color contrast.
+- Reduced-motion support.
+- Proper image dimensions.
+- Optimized image loading.
+- Lazy-load below-the-fold media where appropriate.
+- Avoid unnecessary JavaScript.
+- Avoid rendering thousands of DOM elements for particle effects.
+- Prefer WebGL or canvas for high-volume visual particles.
+- Pause or reduce off-screen animation.
+- Handle WebGL unavailability gracefully.
+- Prevent hydration errors.
+- Prevent content layout shifts.
+- Use correct metadata and page titles.
+- Use descriptive image alt text.
+- Keep the first meaningful content visible quickly.
+
+Aim for excellent Core Web Vitals without sacrificing the defining visual experience.
+
+Do not make the hero wait for a long loading sequence before revealing the page.
+
+---
+
+## 22. SEO AND CONTENT STRUCTURE
+
+Implement:
+
+- Appropriate page titles.
+- Meta descriptions.
+- Open Graph metadata.
+- A suitable favicon when an icon asset is available.
+- Semantic heading hierarchy.
+- Descriptive internal links.
+- A consistent URL structure.
+- Sitemap and robots configuration where appropriate.
+
+Use PeerUp Collective as the organization name.
+
+Do not add unsupported claims about the company.
+
+Keep content in reusable data structures so projects, services, and journal entries can be updated without rewriting the layout.
+
+---
+
+## 23. IMPLEMENTATION WORKFLOW
+
+Follow this sequence.
+
+### Phase 1 — Audit
+
+Inspect the repository, existing assets, package dependencies, and framework.
+
+Identify the supplied navigation component and determine how it should be integrated.
+
+Confirm where the provided logo will be placed.
+
+Do not delete or overwrite useful files without understanding their role.
+
+### Phase 2 — Design system
+
+Establish the color tokens, typography, spacing, layout grid, buttons, labels, borders, and light/dark theme behavior.
+
+Implement the header and fullscreen navigation first.
+
+### Phase 3 — Hero prototype
+
+Build the complete hero composition and a functional first version of the generative artwork.
+
+Validate the typography, spacing, responsive layout, and theme toggle before expanding the page.
+
+### Phase 4 — Motion system
+
+Implement the animation utilities, navigation transitions, reduced-motion handling, and hero scroll choreography.
+
+Keep animation logic organized and reusable.
+
+### Phase 5 — Homepage continuation
+
+Build the selected work, tools, custom software, services, studio, approach, journal, contact, and footer sections.
+
+Ensure that each section has its own visual composition and purpose.
+
+Do not repeat the hero layout for every section.
+
+### Phase 6 — Responsive refinement
+
+Review desktop, tablet, and mobile behavior.
+
+Adjust typography, spacing, image proportions, navigation, and motion independently for each viewport.
+
+### Phase 7 — Quality assurance
+
+Run the project's available checks, including:
+
+- TypeScript validation.
+- Linting.
+- Production build.
+- Responsive checks.
+- Navigation testing.
+- Light/dark mode testing.
+- Keyboard navigation.
+- Reduced-motion testing.
+- Console and hydration error checks.
+- Form behavior testing where applicable.
+
+Fix issues rather than hiding them.
+
+### Phase 8 — Delivery
+
+Provide a concise implementation summary, list of changed files, required environment variables, any remaining placeholders, and exact local-development and deployment instructions.
+
+Do not claim that a feature works unless it has been implemented and verified.
+
+---
+
+## 24. ACCEPTANCE CRITERIA
+
+The project is complete only when:
+
+1. The website has a distinctive PeerUp visual identity based on the supplied references.
+2. The warm ivory, graphite, charcoal, and black color palette is consistent.
+3. The supplied logo is integrated without distortion.
+4. The navigation opens and closes with polished fullscreen animation.
+5. The circular theme toggle works and persists the selected preference.
+6. Both themes remain legible across all sections.
+7. The hero contains a functioning generative visual rather than only a static screenshot.
+8. Scroll animations form a coherent narrative.
+9. Work, tools, custom software, services, studio, approach, journal, contact, and footer have distinct layouts.
+10. Mobile layouts are intentionally designed and functional.
+11. Accessibility and reduced-motion behavior are implemented.
+12. The project builds successfully.
+13. No fake links, fabricated metrics, dead buttons, or misleading form confirmations remain.
+14. The codebase is maintainable and ready for continued development.
+
+## FINAL CREATIVE DIRECTION
+
+The finished PeerUp Collective website should feel like an independent creative technology studio with its own visual universe.
+
+Think warm editorial minimalism combined with generative typography, sculptural geometry, sophisticated transitions, and meticulous engineering.
+
+The first impression should be quiet but extraordinary.
+
+The visitor should feel that the visual system is intelligent, the studio is thoughtful, and the team can translate complex ideas into tangible outcomes.
+
+Build a real website, not a static mockup. Every primary interaction should work, every animation should have a purpose, and every section should contribute to one cohesive brand experience.
