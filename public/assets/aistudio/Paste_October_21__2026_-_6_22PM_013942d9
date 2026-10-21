@@ -1,0 +1,743 @@
+# IMPLEMENT THE PEERUP COLLECTIVE REDESIGN IN THE EXISTING REPOSITORY
+
+Repository: https://github.com/pradyu25/peerup
+
+Branch: main
+
+## OBJECTIVE
+
+Transform the existing PeerUp Collective Vite + React + TypeScript application into a premium, motion-rich creative technology website based on the supplied generated moodboard, hero, fullscreen navigation and final logo references.
+
+Do not scaffold a separate application.
+
+Do not blindly rewrite the entire codebase.
+
+Work inside the current project, preserving useful components, content, functionality and dependencies.
+
+The central requirement is a genuinely animated, glittering, fluid ASCII stream flowing through a curved three-dimensional pipe. It must move continuously at idle, react subtly to pointer movement and transform in synchronization with scrolling.
+
+The circular day/night toggle must change the appearance of the entire website—not only the artwork.
+
+The final design must preserve the generated moodboard's warm ivory, pale stone, warm gray, graphite, charcoal, black and subdued bronze colors.
+
+## 1. EXISTING REPOSITORY STRUCTURE
+
+The repository already includes:
+
+- Vite 6.
+- React 19.
+- TypeScript.
+- Tailwind CSS 4 using `@tailwindcss/vite`.
+- Framer Motion.
+- Three.js.
+- Lucide React.
+- Existing homepage sections.
+- A global ThemeContext.
+- A canvas-based GenerativeSculpture.
+- Existing fullscreen navigation.
+- A project card visual system.
+- Centralized site content.
+- A PeerUp SVG wordmark and favicon.
+
+The relevant existing files are:
+
+- `src/App.tsx`
+- `src/main.tsx`
+- `src/globals.css`
+- `src/context/ThemeContext.tsx`
+- `src/types/index.ts`
+- `src/data/site-content.ts`
+- `src/components/hero/GenerativeSculpture.tsx`
+- `src/components/hero/HeroSection.tsx`
+- `src/components/navigation/SiteHeader.tsx`
+- `src/components/navigation/FullscreenNavigation.tsx`
+- `src/components/navigation/ThemeToggle.tsx`
+- `src/components/ui/ProjectCardVisual.tsx`
+- `src/components/sections/SelectedWork.tsx`
+- `src/components/sections/ToolsProductsSection.tsx`
+- `src/components/sections/CustomSoftwareSection.tsx`
+- `src/components/sections/ServicesSection.tsx`
+- `src/components/sections/StudioSection.tsx`
+- `src/components/sections/ApproachSection.tsx`
+- `src/components/sections/JournalSection.tsx`
+- `src/components/sections/ContactSection.tsx`
+- `src/components/footer/SiteFooter.tsx`
+- `public/images/peerup-logo.svg`
+- `public/favicon.svg`
+- `index.html`
+- `package.json`
+
+Treat this list as an initial audit map, not as a substitute for inspecting the actual current files. Check all imports, additional supporting components, the complete package scripts, and lockfiles before editing.
+
+## 2. REPOSITORY WORKFLOW
+
+Before changing code:
+
+1. Inspect the current working tree and repository state.
+2. Read the full content of the main application, generative canvas, header, navigation, theme context, styles, and page sections.
+3. Identify all hardcoded background, text, border and accent colors.
+4. Find all components that create their own canvas or animation loop.
+5. Examine the supplied navigation component and its current behavior.
+6. Locate the real logo files and determine which is the detailed emblem versus the text wordmark.
+7. Establish a file-by-file implementation plan.
+8. Identify the minimal additional libraries actually needed.
+
+Then implement the plan.
+
+Do not overwrite unrelated code, remove existing sections, or change the project from Vite to Next.js.
+
+Do not add a second theme system or competing animation framework.
+
+Use the currently installed libraries where possible. If adding GSAP is necessary for advanced scroll orchestration, add it with a matching lockfile update and explain its use.
+
+Do not commit, push or deploy unless explicitly requested.
+
+## 3. VISUAL DESIGN TOKENS
+
+Create a coherent global token system.
+
+### Light theme
+
+- Primary background: `#F2F0E9`
+- Secondary background: `#EAE7E0`
+- Pale stone: `#D9D5CC`
+- Warm gray: `#A8A39A`
+- Graphite: `#77736D`
+- Charcoal: `#242321`
+- Deep black: `#111110`
+- White: `#FFFFFF`
+- Muted bronze: `#B39A73`
+
+Use charcoal and near-black for primary text. Use graphite for secondary text and fine neutral lines. Keep bronze restrained.
+
+### Dark theme
+
+- Primary background: `#111110`
+- Secondary background: `#1B1A18`
+- Elevated surface: `#242321`
+- Main text: `#F2F0E9`
+- Secondary text: `#A8A39A`
+- Muted text: `#77736D`
+- Borders: warm neutral gray with low opacity
+- Bronze highlight: `#B39A73`
+
+Avoid saturated yellow-gold, neon lime, bright purple, saturated blue and unrelated accent colors.
+
+Audit the present use of `#C59B27`, `#D4AF37`, and `#A38342`. Replace these with a single subdued bronze token or other appropriately muted palette values wherever they produce overly gold, bright or inconsistent results. Preserve the visual contrast needed by the artwork.
+
+Use semantic CSS variables for page surfaces, text, dividers, buttons, form elements, navigation, overlays and artwork materials.
+
+Do not scatter fixed light-theme colors across every component.
+
+Continue using the current font assets where appropriate:
+
+- Manrope for display sans-serif.
+- Instrument Serif or Cormorant Garamond for editorial contrast.
+- JetBrains Mono for technical labels.
+
+The overall layout should follow the reference: large editorial typography, thin horizontal rules, small uppercase labels, a lot of negative space, restrained button shapes, asymmetric composition and carefully controlled visual detail.
+
+## 4. LOGO INTEGRATION
+
+An SVG wordmark currently exists at `public/images/peerup-logo.svg`, but I will provide the final logo with the geometric emblem separately.
+
+Inspect the available assets and make the logo configurable.
+
+When the final emblem asset is supplied, place it in the public assets directory and integrate it in:
+
+- Site header.
+- Fullscreen navigation.
+- Footer.
+
+Do not redraw or approximate the final logo.
+
+Preserve its aspect ratio and transparent background. Do not crop or distort it.
+
+If a light and dark version exists, choose the correct asset for each surface without changing the actual emblem.
+
+Keep the existing text wordmark as a fallback only until the final asset is present.
+
+Use the emblem in the header at a refined, readable size. Do not make it oversized compared with the navigation.
+
+Do not invent an asset path beyond the configured path in the implementation. Make the final location obvious and easy to change.
+
+## 5. REDESIGN GENERATIVESCULPTURE
+
+Primary file: `src/components/hero/GenerativeSculpture.tsx`
+
+This is the most important implementation task.
+
+The current component uses Canvas 2D, five strands, ASCII glyphs and occasional small circular highlights. It continuously redraws and responds to pointer movement, but it does not yet deliver the desired dense, physically coherent, glittering ASCII pipe.
+
+Replace or substantially improve the rendering implementation while preserving a stable React component interface where practical.
+
+### Required artistic result
+
+Create an intricate, sculptural, three-dimensional stream flowing through a continuous curved, hollow pipe or ribbon.
+
+It should combine:
+
+- Thousands of tiny typographic particles where performance permits.
+- ASCII characters such as P, E, R, U, P, 0, 1, dots and selected symbols.
+- Dense particle fields.
+- Fine metallic filaments.
+- Dotted halftone structure.
+- Organic curves and loops.
+- Controlled depth and perspective.
+- Subtle surface illumination.
+- Warm reflective highlights.
+- Tiny sparkling points.
+- Natural flow and deformation.
+
+The fluid must appear to travel through the pipe rather than just rotate as a rigid knot.
+
+It must remain alive when the visitor is not scrolling.
+
+Create a clear sense of stream direction, depth and continuous flow.
+
+Avoid a simple torus made from equally spaced text, a static SVG, a stock image, or a screenshot masquerading as live artwork.
+
+### Recommended technical approach
+
+The project already depends on Three.js.
+
+Evaluate a GPU-backed implementation using Three.js, custom GLSL shaders and GPU-friendly particle rendering.
+
+React Three Fiber is optional and should only be introduced if it substantially simplifies integration. Do not install additional rendering frameworks unnecessarily.
+
+Use a procedural curved path, tube-like surface, ribbon surface or other appropriate three-dimensional representation.
+
+Move particles along the path with carefully designed offsets and controlled noise.
+
+Use instancing, buffer geometry, shaders or other efficient techniques rather than creating thousands of independent React elements.
+
+Generate the ASCII character layer from surface samples, projected particle positions, density maps or shader-informed rendering. It must feel related to the pipe's underlying geometry.
+
+Keep the character distribution varied but intentional.
+
+Use a mixture of:
+
+- Fine glyphs following the pipe.
+- Bright micro-particles around the surface.
+- Delicate strands around the main body.
+- Occasional brighter points.
+- Background particles that dissipate gradually into space.
+
+Do not make every particle equally bright.
+
+Do not overwhelm the composition with excessive glitter.
+
+The result should evoke warm reflective matter, illuminated dust and fine typographic data moving through a sculptural structure.
+
+### Continuous idle animation
+
+Implement a stable, persistent animation loop.
+
+The loop must support:
+
+- Continuous particle progression along the stream.
+- Slow organic changes in pipe curvature.
+- Gentle deformation.
+- Fine filament movement.
+- Subtle brightness variation.
+- Controlled idle camera drift.
+- Pointer-reactive movement.
+- Scroll-linked parameters.
+
+Scroll position must not be the only source of animation.
+
+The stream should continue flowing at a restrained pace when the pointer is stationary and the visitor stops scrolling.
+
+When the visitor resumes scrolling, the flow should naturally respond without restarting or jumping.
+
+### Pointer interaction
+
+Use pointer events and normalized coordinates.
+
+Subtly influence camera position, curvature or nearby particles.
+
+Interpolate changes smoothly.
+
+Keep the effect elegant and predictable.
+
+Return gradually toward the idle state when the pointer leaves.
+
+Do not require dragging to see the main animation.
+
+### Theme integration
+
+Read theme values from the existing `ThemeContext` or from the shared scene parameters.
+
+Avoid tearing down and recreating the entire simulation every time the theme changes.
+
+Use theme-aware materials or uniform values so the artwork updates in place.
+
+Light theme:
+
+- Graphite and charcoal glyphs.
+- Pale neutral reflections.
+- Muted bronze highlights.
+
+Dark theme:
+
+- Ivory and pale-stone glyphs.
+- Darker particle shadows.
+- Restrained warm highlights.
+
+Do not simply invert the rendered output.
+
+### Performance and lifecycle
+
+- Limit the device pixel ratio appropriately.
+- Adapt particle counts to screen size and performance needs.
+- Handle resize correctly.
+- Clean up the renderer and animation loop.
+- Remove event listeners.
+- Dispose of GPU resources when appropriate.
+- Pause unnecessary work when the scene is not visible.
+- Resume without a visual jump.
+- Respect reduced-motion preferences.
+- Provide an appropriate fallback if WebGL is unavailable.
+
+Do not regress the existing project build or component API.
+
+## 6. CONNECT THE SCENE TO SCROLL
+
+Primary files:
+
+- `src/components/hero/GenerativeSculpture.tsx`
+- `src/components/hero/HeroSection.tsx`
+- `src/App.tsx`
+
+Introduce a shared scroll-animation system that controls the same scene from the hero into the continuation content.
+
+GSAP and ScrollTrigger are appropriate candidates for the scroll choreography.
+
+Keep the continuous simulation and the scroll timeline separate but coordinated:
+
+- Continuous animation controls the passage of particles, the subtle fluid motion and idle movement.
+- Scroll progress controls the larger composition changes.
+
+Both must contribute to the final rendered scene.
+
+Do not freeze the scene between scroll events.
+
+### Animation progression
+
+**State 01 — Flow**
+
+The pipe forms a large, elegant loop with an expansive stream of typographic particles, soft highlights and thin curved filaments.
+
+**State 02 — Bend**
+
+As the hero scrolls, the pipe gradually changes curvature. The flow stretches, particles travel along the altered path and the composition shifts to make room for the next content.
+
+**State 03 — Stretch**
+
+The pipe lengthens through the transition. Fine filaments spread into the surrounding space. Particles continue moving while the camera and shape change.
+
+**State 04 — Fragment**
+
+The flow gradually disperses into small characters and points, forming a field or grid that connects the generative artwork to the next section.
+
+**State 05 — Resolve**
+
+The abstract visual recedes, changes scale or reassembles into a smaller sculptural detail as the page presents real work and capabilities.
+
+**State 06 — Re-form**
+
+Toward the closing contact section, the fluid can re-form into a focused sculptural object that visually echoes the beginning.
+
+Treat these as one continuous visual narrative, not unrelated animations.
+
+### Scroll implementation requirements
+
+- Keep the normal document scroll functional.
+- Use a pinned hero scene only if it improves the composition.
+- Avoid excessively long pinned sections.
+- Use a scrubbed timeline with carefully tuned easing.
+- Synchronize scene parameters with scroll progress.
+- Keep typography independent enough to preserve readability.
+- Ensure scroll animations reverse naturally when the user scrolls upward.
+- Ensure resize events do not reset the animation.
+- Do not register redundant global scroll listeners.
+- Clean up all timelines and triggers when the component unmounts.
+- Simplify pinned choreography on mobile.
+
+If a full-page shared scene is unnecessarily complex, use the same persistent scene in the hero and transition it out carefully rather than mounting multiple competing simulations.
+
+The scene must remain continuous throughout the transition. Do not swap it for a static screenshot at each scroll breakpoint.
+
+## 7. REWORK THE HERO
+
+Primary file: `src/components/hero/HeroSection.tsx`
+
+Preserve the current content architecture while refining its composition.
+
+Main headline:
+
+“We make ideas
+move.”
+
+Use a strong sans-serif for “We make ideas” and an elegant italic serif for “move.”
+
+Supporting text:
+
+“We combine design, engineering, and emerging technology to build digital products, distinctive brands, and meaningful experiences for a more ambitious tomorrow.”
+
+Primary CTA: “Start a project”
+
+Secondary CTA: “View our work”
+
+Keep the fine labels, thin rules, bottom metadata and scroll indicator.
+
+Use the fluid pipe as the dominant artistic object.
+
+The artwork must have sufficient room and not collide with the headline, header, buttons or metadata.
+
+Refine the hero's height and spacing based on actual browser preview.
+
+Use the official logo in the header rather than relying on the large background watermark as the primary brand identifier.
+
+Avoid turning every viewport into the exact same composition. The artwork and headline must reflow cleanly on mobile.
+
+Use restrained staggered reveals for the headline and small metadata.
+
+Do not delay the first meaningful content until the artwork has loaded.
+
+## 8. GLOBAL THEME TOGGLE
+
+Primary files:
+
+- `src/context/ThemeContext.tsx`
+- `src/components/navigation/ThemeToggle.tsx`
+- `src/globals.css`
+
+The current global context and local-storage persistence should be retained and improved rather than replaced.
+
+### Theme behavior
+
+The small circular moon/sun button must change the entire site's visual system:
+
+- All section backgrounds.
+- Main and secondary text.
+- Borders.
+- Buttons and links.
+- Form controls.
+- Work cards and modals.
+- Navigation.
+- Fullscreen overlay.
+- Footer.
+- Canvas or WebGL artwork.
+- Muted details and interaction states.
+
+Remove fixed colors that cause components to remain permanently light or dark when they should follow the global theme.
+
+The contact section and fullscreen navigation can maintain art-directed contrast, but they must do so intentionally and consistently within both theme states.
+
+### Toggle appearance
+
+- Circular outline.
+- Refined moon/sun icon.
+- Minimal footprint.
+- Subtle icon transition.
+- Small hover state.
+- Visible keyboard focus.
+- Accessible label describing the action.
+
+Avoid a large switch or pill.
+
+### Persistence
+
+Retain the existing `peerup-theme` preference key unless there is a strong reason to migrate it.
+
+Respect the operating system preference when no saved preference exists.
+
+Initialize the root theme consistently to avoid visible flashes and incorrect initial colors.
+
+Do not introduce server-specific hydration logic that is unnecessary for this Vite application.
+
+Changing the theme must not reset the fluid simulation or restart the scroll timeline.
+
+## 9. REDESIGN SITE HEADER AND FULLSCREEN NAVIGATION
+
+Primary files:
+
+- `src/components/navigation/SiteHeader.tsx`
+- `src/components/navigation/FullscreenNavigation.tsx`
+- `src/components/navigation/ThemeToggle.tsx`
+
+Use the supplied immersive fullscreen navigation as the design reference.
+
+Do not discard the current working structure without reason.
+
+### Header
+
+Place the official PeerUp logo at the left.
+
+At the right, show:
+
+- Work.
+- Studio.
+- Approach.
+- Journal.
+- Circular theme toggle.
+- Menu trigger or Contact CTA as space permits.
+
+Use refined spacing and minimal typography.
+
+Keep the header transparent over the opening hero and introduce a subtle theme-aware surface or border when scrolled, where appropriate.
+
+Make the logo clickable and link it to the homepage.
+
+### Fullscreen navigation
+
+Create an animated full-screen overlay with:
+
+- Deep charcoal or near-black background.
+- Warm ivory typography.
+- Official logo in the top-left.
+- Circular close button in the top-right.
+- Large numbered navigation items.
+- Small technical labels.
+- Delicate rules.
+- Subtle generative fluid visual on the right.
+- Studio information and closing message near the bottom.
+
+Navigation:
+
+01 — Work
+02 — Studio
+03 — Approach
+04 — Journal
+05 — Contact
+
+Use refined serif typography for the large link labels.
+
+### Motion
+
+Opening:
+
+- Reveal the overlay with a clip-path or mask transition.
+- Stagger the links.
+- Introduce the supporting labels.
+- Reveal the generative artwork smoothly.
+
+Closing:
+
+- Reverse the transitions without abrupt snapping.
+
+Keep the visual balanced on smaller screens. Avoid rendering the elaborate sculpture behind the links on mobile if doing so affects performance or legibility.
+
+### Accessibility
+
+The current menu handles Escape and body scroll locking, but verify whether keyboard focus is genuinely trapped.
+
+Implement or improve:
+
+- Focus trapping.
+- Focus restoration.
+- Escape-to-close.
+- Background scroll locking.
+- Accessible labels.
+- Correct menu and dialog semantics.
+- Correct link navigation.
+- Focus-visible styling.
+- Reduced-motion support.
+- Safe clipboard handling for the contact action.
+
+The theme toggle must remain functional in the navigation context where it is displayed.
+
+## 10. REFINE THE CONTINUATION SECTIONS
+
+Existing files:
+
+- `src/components/sections/SelectedWork.tsx`
+- `src/components/sections/ToolsProductsSection.tsx`
+- `src/components/sections/CustomSoftwareSection.tsx`
+- `src/components/sections/ServicesSection.tsx`
+- `src/components/sections/StudioSection.tsx`
+- `src/components/sections/ApproachSection.tsx`
+- `src/components/sections/JournalSection.tsx`
+- `src/components/sections/ContactSection.tsx`
+- `src/components/footer/SiteFooter.tsx`
+
+Do not make every section a variation of the hero.
+
+Keep each section distinct while preserving a unified design system.
+
+### Selected work
+
+Use an editorial project grid with varied visual proportions, clear metadata and restrained interactions.
+
+Reuse `ProjectCardVisual.tsx` where appropriate.
+
+Preserve the actual project data and project modal behavior unless a genuine issue requires correction.
+
+Make clickable project items accessible by keyboard.
+
+Ensure any filter buttons and modals work correctly.
+
+### Tools and products
+
+Present tools as a premium product editorial showcase rather than three generic white cards.
+
+Use subtle visual demonstrations, short descriptions, and careful whitespace.
+
+Inspect the current waitlist form. It currently has client-side submission state and a timeout but no confirmed backend delivery. Do not imply a request has been sent unless it actually has. Use honest prototype wording or implement a verified delivery mechanism only when available.
+
+### Custom software
+
+Retain the existing interactive engineering showcase.
+
+Refine the layout, use theme tokens, and keep the technical presentation editorial and legible.
+
+Do not add fake system metrics or unsupported performance promises.
+
+### Services
+
+Preserve the existing service data and use an editorial numbered list.
+
+Make hover behavior work with keyboard and touch. Do not depend on `onMouseEnter` alone for the core interaction.
+
+Ensure the service enquiry action is clear and correctly connected.
+
+### Studio
+
+Use a thoughtful editorial composition and a restrained visual element.
+
+Preserve existing content and modal functionality.
+
+### Approach
+
+Retain the four-step approach and its active-state behavior.
+
+Make the controls usable by keyboard and touch.
+
+Do not rely entirely on hover to expose content.
+
+### Journal
+
+Maintain the editorial article layout and reader modal.
+
+Review modal keyboard access and closing behavior.
+
+Use the neutral palette and distinct article imagery.
+
+### Contact
+
+Preserve the existing contact form and email copy interaction.
+
+Review whether the submission handler actually delivers the form anywhere. If it is a frontend prototype, label that honestly and keep the mailto fallback functional.
+
+Use a premium closing scene without allowing the dark/light theme behavior to become inconsistent.
+
+### Footer
+
+Replace the text-only brand presentation with the final logo asset when available.
+
+Make the footer use semantic tokens or an explicit theme-aware design rule.
+
+Keep the large typographic treatment restrained and responsive.
+
+Preserve working navigation actions.
+
+## 11. REPAIR COLOR INCONSISTENCIES
+
+The repository currently contains numerous hardcoded Tailwind colors.
+
+Identify all uses of:
+
+- `#F2F0E9`
+- `#EAE7E0`
+- `#D9D5CC`
+- `#111110`
+- `#242321`
+- `#A38342`
+- `#C59B27`
+- `#D4AF37`
+- fixed white and neutral surfaces
+
+Migrate them carefully to global semantic tokens when they represent theme-dependent UI colors.
+
+Do not mechanically replace every color string. A dark project thumbnail, for example, may intentionally have its own independent color treatment.
+
+Distinguish between:
+
+1. Theme-dependent interface colors.
+2. Artwork materials.
+3. Intentionally fixed visual treatments.
+4. Content-specific project artwork.
+
+After migrating colors, verify all sections in both themes and ensure that muted text remains readable.
+
+Do not introduce a large collection of slightly different bronze shades.
+
+## 12. BUILD AND QUALITY VERIFICATION
+
+The existing package scripts include:
+
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npm run preview`
+
+Use these existing scripts.
+
+Run the build and lint checks after implementation.
+
+Resolve TypeScript errors and application errors introduced by the change.
+
+Test:
+
+- Continuous fluid motion at idle.
+- Pointer interaction.
+- Scroll-linked scene deformation.
+- Reverse scrolling.
+- Light and dark theme behavior.
+- Theme persistence.
+- Fullscreen navigation.
+- Logo placement.
+- All section navigation.
+- Forms and contact actions.
+- Responsive layouts.
+- Reduced motion.
+- WebGL fallback.
+- Console errors and memory leaks.
+
+If browser preview tooling is available, use it to inspect the real application at desktop and mobile viewports.
+
+Do not claim to have tested behavior that was not actually tested.
+
+## 13. DELIVERABLES
+
+Implement the redesign directly in the existing repository working copy.
+
+At completion, report:
+
+- What was changed.
+- The important files changed.
+- The new dependencies added, if any.
+- How the fluid rendering and scroll synchronization work.
+- How the global light/dark theme is applied.
+- Where the final logo asset should be placed.
+- Whether the production build and type checks passed.
+- Any remaining placeholders or limitations.
+
+Do not stop after making a plan or generating a static mockup. Complete the implementation and verify it.
+
+Do not leave the central fluid-art requirement as a TODO.
+
+## FINAL DESIGN TEST
+
+The opening must feel like an elegant ivory editorial page with a sculptural stream of animated, sparkling ASCII matter.
+
+The stream must continuously flow through a curved three-dimensional pipe, deform as the user scrolls, and respond subtly to pointer movement.
+
+The navigation must feel like a carefully designed full-screen experience.
+
+The circular moon/sun control must change the whole website coherently.
+
+The continuation sections must have individual layouts, while retaining the same warm neutral visual identity.
+
+The result must feel like PeerUp Collective—not a generic agency template.

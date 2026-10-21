@@ -69,7 +69,6 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
         const cx = width / 2;
         const cy = height / 2 + 10;
         const size = 95 + (isHovered ? 6 : 0);
-        const rot = t * 0.5;
 
         // Shadow
         ctx.beginPath();
@@ -99,7 +98,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           ctx.lineTo(cx, cy + size * 1.0);
           ctx.lineTo(cx - size * 0.86, cy + size * 0.5);
           ctx.closePath();
-          ctx.fillStyle = '#C59B27';
+          ctx.fillStyle = '#B39A73'; // Subdued bronze
           ctx.fill();
           ctx.stroke();
 
@@ -122,7 +121,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
 
           ctx.beginPath();
           ctx.ellipse(cx, cy - size * 0.1, size * 0.22, size * 0.12, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = '#C59B27';
+          ctx.strokeStyle = '#B39A73'; // Subdued bronze
           ctx.lineWidth = 2.5;
           ctx.stroke();
         };
@@ -208,7 +207,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
         for (const node of nodes) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = '#C59B27';
+          ctx.fillStyle = '#B39A73'; // Subdued bronze
           ctx.fill();
         }
       } else {
@@ -224,7 +223,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
             const sinY = Math.sin(x * 0.015 + t + i * 0.2) * 25;
             ctx.lineTo(x, y + sinY);
           }
-          ctx.strokeStyle = `rgba(197, 155, 39, ${0.1 + (i / 20) * 0.3})`;
+          ctx.strokeStyle = `rgba(179, 154, 115, ${0.1 + (i / 20) * 0.3})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
         }

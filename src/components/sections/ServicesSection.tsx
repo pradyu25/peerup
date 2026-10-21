@@ -36,8 +36,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onInquireServi
             return (
               <div
                 key={service.number}
+                tabIndex={0}
+                role="button"
+                aria-label={`Inquire about ${service.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onInquireService?.(service.title);
+                  }
+                }}
+                onFocus={() => setHoveredIndex(index)}
                 onMouseEnter={() => setHoveredIndex(index)}
-                className={`py-8 md:py-12 transition-colors duration-300 cursor-pointer ${
+                className={`py-8 md:py-12 transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73] ${
                   isHovered ? 'bg-neutral-200/20 dark:bg-neutral-800/20 px-4 -mx-4 rounded-xs' : ''
                 }`}
                 onClick={() => onInquireService?.(service.title)}
@@ -49,9 +59,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onInquireServi
                       {service.number}
                     </span>
                     <div>
-                      <h3 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#111110] dark:text-[#F2F0E9] group-hover:text-[#C59B27] transition-colors flex items-center gap-3">
+                      <h3 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-[#111110] dark:text-[#F2F0E9] group-hover:text-[#B39A73] transition-colors flex items-center gap-3">
                         <span>{service.title}</span>
-                        <ArrowUpRight size={18} className="text-neutral-400 group-hover:text-[#111110] dark:group-hover:text-[#F2F0E9] transition-transform" />
+                        <ArrowUpRight size={18} className="text-neutral-400 group-hover:text-[#111110] dark:group-hover:text-[#F2F0E9] transition-transform text-[#B39A73]" />
                       </h3>
                       <p className="font-mono-tech text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                         {service.tagline}
@@ -68,7 +78,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onInquireServi
                   <div className="lg:col-span-3 space-y-1.5 font-mono-tech text-[11px] text-neutral-500 dark:text-neutral-400">
                     {service.capabilities.map((cap, i) => (
                       <div key={i} className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-[#C59B27]" />
+                        <span className="w-1 h-1 rounded-full bg-[#B39A73]" />
                         <span>{cap}</span>
                       </div>
                     ))}

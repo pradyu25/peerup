@@ -32,7 +32,7 @@ export const StudioSection: React.FC = () => {
         const angle = (i / cageLines) * Math.PI + t * 0.2;
         ctx.beginPath();
         ctx.ellipse(cx, cy, 180, 180 * Math.abs(Math.sin(angle)), angle + t * 0.1, 0, Math.PI * 2);
-        ctx.strokeStyle = isDark ? 'rgba(212, 175, 55, 0.18)' : 'rgba(163, 131, 66, 0.22)';
+        ctx.strokeStyle = isDark ? 'rgba(179, 154, 115, 0.25)' : 'rgba(179, 154, 115, 0.30)';
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -95,7 +95,7 @@ export const StudioSection: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? '#D4AF37' : '#A38342';
+        ctx.fillStyle = '#B39A73'; // Subdued bronze
         ctx.fill();
       }
 
@@ -144,10 +144,10 @@ export const StudioSection: React.FC = () => {
               <button
                 onClick={() => setIsStoryModalOpen(true)}
                 type="button"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 <span>Our story</span>
-                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
               </button>
             </div>
           </div>
@@ -169,7 +169,7 @@ export const StudioSection: React.FC = () => {
             <span>—</span>
             <span>REMOTE</span>
           </div>
-          <div className="tracking-wider uppercase">
+          <div className="tracking-wider uppercase text-[#B39A73]">
             SELECT COLLABORATIONS ONLY
           </div>
         </div>
@@ -189,7 +189,7 @@ export const StudioSection: React.FC = () => {
           >
             <div className="flex items-start justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4">
               <div>
-                <span className="font-mono-tech text-xs text-[#C59B27] tracking-widest uppercase">
+                <span className="font-mono-tech text-xs text-[#B39A73] tracking-widest uppercase">
                   OUR PHILOSOPHY
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight mt-1">
@@ -199,7 +199,7 @@ export const StudioSection: React.FC = () => {
               <button
                 onClick={() => setIsStoryModalOpen(false)}
                 aria-label="Close story modal"
-                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 <X size={16} />
               </button>
@@ -224,7 +224,7 @@ export const StudioSection: React.FC = () => {
               <span>PEERUP COLLECTIVE // EST. 2019</span>
               <button
                 onClick={() => setIsStoryModalOpen(false)}
-                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer"
+                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 Done
               </button>

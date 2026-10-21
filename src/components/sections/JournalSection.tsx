@@ -38,10 +38,10 @@ export const JournalSection: React.FC = () => {
             <button
               onClick={() => setSelectedArticle(JOURNAL_ARTICLES[0])}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
             >
               <span>Read the journal</span>
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
             </button>
           </div>
         </div>
@@ -51,20 +51,29 @@ export const JournalSection: React.FC = () => {
           {JOURNAL_ARTICLES.map((article, idx) => (
             <div
               key={article.id}
+              tabIndex={0}
+              role="button"
+              aria-label={`Read article: ${article.title}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedArticle(article);
+                }
+              }}
               onClick={() => setSelectedArticle(article)}
-              className="group cursor-pointer flex flex-col justify-between space-y-4"
+              className="group cursor-pointer flex flex-col justify-between space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B39A73] rounded-xs p-1"
             >
               {/* Visual Thumbnail */}
               <div className="relative aspect-16/10 w-full overflow-hidden rounded-xs border border-neutral-300/60 dark:border-neutral-800/60 group-hover:-translate-y-1 transition-transform duration-500">
                 <JournalCardCanvas index={idx} />
-                <div className="absolute top-3 left-3 bg-[#111110]/80 text-[#F2F0E9] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest uppercase">
+                <div className="absolute top-3 left-3 bg-[#111110]/85 text-[#F2F0E9] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest uppercase">
                   {article.category}
                 </div>
               </div>
 
               {/* Title & Date */}
               <div className="space-y-2 pt-1">
-                <h3 className="text-lg font-bold font-display text-[#111110] dark:text-[#F2F0E9] group-hover:text-[#C59B27] transition-colors leading-snug">
+                <h3 className="text-lg font-bold font-display text-[#111110] dark:text-[#F2F0E9] group-hover:text-[#B39A73] transition-colors leading-snug">
                   {article.title}
                 </h3>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
@@ -74,7 +83,7 @@ export const JournalSection: React.FC = () => {
                   <span>{article.date}</span>
                   <span className="flex items-center gap-1 group-hover:text-[#111110] dark:group-hover:text-[#F2F0E9] transition-colors">
                     <span>{article.readTime}</span>
-                    <ArrowUpRight size={12} />
+                    <ArrowUpRight size={12} className="text-[#B39A73]" />
                   </span>
                 </div>
               </div>
@@ -97,7 +106,7 @@ export const JournalSection: React.FC = () => {
           >
             <div className="flex items-start justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4">
               <div>
-                <span className="font-mono-tech text-xs text-[#C59B27] tracking-widest uppercase">
+                <span className="font-mono-tech text-xs text-[#B39A73] tracking-widest uppercase">
                   {selectedArticle.category} · {selectedArticle.date}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight mt-1 leading-snug">
@@ -107,7 +116,7 @@ export const JournalSection: React.FC = () => {
               <button
                 onClick={() => setSelectedArticle(null)}
                 aria-label="Close article"
-                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer shrink-0 ml-4"
+                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer shrink-0 ml-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 <X size={16} />
               </button>
@@ -124,7 +133,7 @@ export const JournalSection: React.FC = () => {
               <span>PEERUP JOURNAL // {selectedArticle.readTime}</span>
               <button
                 onClick={() => setSelectedArticle(null)}
-                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer"
+                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 Done Reading
               </button>
@@ -198,9 +207,9 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
             else ctx.lineTo(x, y);
           }
           ctx.closePath();
-          ctx.fillStyle = r % 20 === 0 ? 'rgba(197, 155, 39, 0.25)' : 'rgba(36, 35, 33, 0.12)';
+          ctx.fillStyle = r % 20 === 0 ? 'rgba(179, 154, 115, 0.25)' : 'rgba(36, 35, 33, 0.12)';
           ctx.fill();
-          ctx.strokeStyle = 'rgba(163, 131, 66, 0.4)';
+          ctx.strokeStyle = 'rgba(179, 154, 115, 0.4)';
           ctx.stroke();
         }
       } else {
@@ -219,7 +228,7 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
 
           ctx.beginPath();
           ctx.arc(x, y, 1.4, 0, Math.PI * 2);
-          ctx.fillStyle = p % 3 === 0 ? '#C59B27' : 'rgba(242, 240, 233, 0.6)';
+          ctx.fillStyle = p % 3 === 0 ? '#B39A73' : 'rgba(242, 240, 233, 0.6)';
           ctx.fill();
         }
       }

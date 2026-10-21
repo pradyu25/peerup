@@ -13,7 +13,7 @@ export const ToolsProductsSection: React.FC = () => {
     setTimeout(() => {
       setSubmittedTool(null);
       setWaitlistEmail('');
-    }, 4000);
+    }, 4500);
   };
 
   return (
@@ -53,7 +53,7 @@ export const ToolsProductsSection: React.FC = () => {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-[#C59B27] font-semibold">
+                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-[#B39A73] font-semibold">
                       {tool.badge}
                     </span>
                     <span className="font-mono-tech text-[10px] text-neutral-400 uppercase">
@@ -77,7 +77,7 @@ export const ToolsProductsSection: React.FC = () => {
                   <div className="pt-2 space-y-2 border-t border-neutral-200 dark:border-neutral-800">
                     {tool.features.map((feat, i) => (
                       <div key={i} className="flex items-center gap-2 text-[11px] font-mono-tech text-neutral-500 dark:text-neutral-400">
-                        <Check size={12} className="text-[#C59B27]" />
+                        <Check size={12} className="text-[#B39A73]" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -87,9 +87,9 @@ export const ToolsProductsSection: React.FC = () => {
                 {/* Action / Waitlist Form */}
                 <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800">
                   {isSubmitted ? (
-                    <div className="p-2.5 rounded-xs bg-[#C59B27]/10 text-[#C59B27] font-mono-tech text-xs flex items-center justify-center gap-2">
+                    <div className="p-3 rounded-xs bg-[#B39A73]/15 text-[#B39A73] font-mono-tech text-xs flex items-center justify-center gap-2">
                       <Sparkles size={14} />
-                      <span>Request recorded! We'll reach out.</span>
+                      <span>Waitlist recorded for preview release.</span>
                     </div>
                   ) : (
                     <form onSubmit={(e) => handleWaitlistSubmit(tool.id, e)} className="flex items-center gap-2">
@@ -99,11 +99,11 @@ export const ToolsProductsSection: React.FC = () => {
                         value={waitlistEmail}
                         onChange={(e) => setWaitlistEmail(e.target.value)}
                         required
-                        className="flex-1 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-xs rounded-xs text-[#111110] dark:text-[#F2F0E9] focus:outline-none focus:border-[#C59B27]"
+                        className="flex-1 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 px-3 py-2 text-xs rounded-xs text-[#111110] dark:text-[#F2F0E9] focus:outline-none focus:border-[#B39A73]"
                       />
                       <button
                         type="submit"
-                        className="px-3 py-2 bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] rounded-xs text-xs font-semibold hover:opacity-90 transition-opacity shrink-0 cursor-pointer"
+                        className="px-3 py-2 bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] rounded-xs text-xs font-semibold hover:opacity-90 transition-opacity shrink-0 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
                         title="Submit email"
                       >
                         <ArrowUpRight size={14} />

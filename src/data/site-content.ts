@@ -1,7 +1,7 @@
 import { Project, ServiceItem, ApproachStep, JournalArticle, ProductTool } from '../types';
 
 export const SITE_METADATA = {
-  brandName: 'PEERUP®',
+  brandName: 'PEERUP',
   descriptor: 'COLLECTIVE',
   statement: 'We make ideas move.',
   supportingStatement: 'We combine design, engineering and emerging technology to build digital products, distinct brands and meaningful experiences for a more ambitious tomorrow.',
@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
     description: 'A purpose-built personal wealth and capital allocation operating system. Replaces bloated spreadsheets with spatial balance sheets, cashflow trajectory models, and tabular visual precision.',
     clientType: 'Fintech Product Exploration',
     deliverables: ['Design System', 'React & WebGL Spatial Charts', 'Local-First Encryption', 'Mobile Companion'],
-    accentColor: '#C59B27',
+    accentColor: '#B39A73',
     imageAlt: 'Sculptural titanium terminal cube on stone representing FinanceDesk precision',
     featured: true
   },
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     description: 'An experimental web-based dynamic branding generator that generates thousands of algorithmic logo variations responding to environmental sound, user interaction, and time of day.',
     clientType: 'Experimental Creative Lab',
     deliverables: ['Shader Development', 'GLSL Particle Simulation', 'Brand Guidelines', 'Interactive Web Portal'],
-    accentColor: '#A38342',
+    accentColor: '#B39A73',
     imageAlt: 'Dynamic swirling particle sculpture with generative kinetic curves',
     featured: false
   }

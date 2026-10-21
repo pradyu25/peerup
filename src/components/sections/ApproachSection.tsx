@@ -36,7 +36,7 @@ export const ApproachSection: React.FC = () => {
 
             {/* Currently Active Step Highlight Box */}
             <div className="pt-6 border-t border-neutral-300/60 dark:border-neutral-800/60">
-              <div className="font-mono-tech text-xs text-[#C59B27] tracking-wider uppercase mb-2">
+              <div className="font-mono-tech text-xs text-[#B39A73] tracking-wider uppercase mb-2">
                 ACTIVE PHASE: {APPROACH_STEPS[activeStep].number} — {APPROACH_STEPS[activeStep].title}
               </div>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
@@ -62,18 +62,28 @@ export const ApproachSection: React.FC = () => {
               return (
                 <div
                   key={step.number}
+                  tabIndex={0}
+                  role="button"
+                  aria-pressed={isSelected}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveStep(index);
+                    }
+                  }}
                   onClick={() => setActiveStep(index)}
                   onMouseEnter={() => setActiveStep(index)}
-                  className={`group py-6 sm:py-8 cursor-pointer transition-colors duration-200 flex flex-col justify-center ${
+                  onFocus={() => setActiveStep(index)}
+                  className={`group py-6 sm:py-8 cursor-pointer transition-colors duration-200 flex flex-col justify-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73] ${
                     isSelected ? 'bg-neutral-200/30 dark:bg-neutral-800/20 px-4 -mx-4 rounded-xs' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-baseline gap-6 sm:gap-10">
-                      <span className="font-mono-tech text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 group-hover:text-[#C59B27] transition-colors tabular-nums">
+                      <span className="font-mono-tech text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 group-hover:text-[#B39A73] transition-colors tabular-nums">
                         {step.number}
                       </span>
-                      <span className="font-mono-tech text-sm sm:text-base font-bold tracking-wider text-[#111110] dark:text-[#F2F0E9] uppercase group-hover:text-[#C59B27] transition-colors">
+                      <span className="font-mono-tech text-sm sm:text-base font-bold tracking-wider text-[#111110] dark:text-[#F2F0E9] uppercase group-hover:text-[#B39A73] transition-colors">
                         {step.title}
                       </span>
                     </div>
@@ -85,7 +95,7 @@ export const ApproachSection: React.FC = () => {
                       <ArrowUpRight
                         size={16}
                         className={`transition-all duration-300 text-neutral-400 group-hover:text-[#111110] dark:group-hover:text-[#F2F0E9] ${
-                          isSelected ? 'rotate-45 text-[#C59B27]' : ''
+                          isSelected ? 'rotate-45 text-[#B39A73]' : ''
                         }`}
                       />
                     </div>

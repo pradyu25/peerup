@@ -1,47 +1,59 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --bg-primary: #F2F0E9;
-    --bg-secondary: #EAE7E0;
-    --bg-card: #FFFFFF;
-    --text-primary: #111110;
-    --text-secondary: #77736D;
-    --text-muted: #A8A39A;
-    --border-subtle: rgba(36, 35, 33, 0.12);
-    --border-strong: rgba(36, 35, 33, 0.28);
-    --accent-dark: #242321;
-    --accent-bronze: #A38342;
-    --color-sculpture-primary: #242321;
-    --color-sculpture-secondary: #C59B27;
+    --color-bg-primary: #F2F0E9;
+    --color-bg-secondary: #EAE7E0;
+    --color-bg-stone: #D9D5CC;
+    --color-surface: #FFFFFF;
+    --color-surface-raised: #FFFFFF;
+    --color-text-primary: #242321;
+    --color-text-secondary: #77736D;
+    --color-text-muted: #A8A39A;
+    --color-border: #D9D5CC;
+    --color-border-subtle: rgba(36, 35, 33, 0.12);
+    --color-border-strong: rgba(36, 35, 33, 0.28);
+    --color-accent: #B39A73;
+    --color-btn-bg: #242321;
+    --color-btn-text: #F2F0E9;
+    --color-input-bg: #FFFFFF;
+    --color-backdrop-text: rgba(36, 35, 33, 0.04);
   }
 
   .dark {
-    --bg-primary: #111110;
-    --bg-secondary: #1A1918;
-    --bg-card: #201F1D;
-    --text-primary: #F2F0E9;
-    --text-secondary: #A8A39A;
-    --text-muted: #77736D;
-    --border-subtle: rgba(242, 240, 233, 0.12);
-    --border-strong: rgba(242, 240, 233, 0.28);
-    --accent-dark: #F2F0E9;
-    --accent-bronze: #D4AF37;
-    --color-sculpture-primary: #F2F0E9;
-    --color-sculpture-secondary: #C59B27;
+    --color-bg-primary: #111110;
+    --color-bg-secondary: #1B1A18;
+    --color-bg-stone: #242321;
+    --color-surface: #1B1A18;
+    --color-surface-raised: #242321;
+    --color-text-primary: #F2F0E9;
+    --color-text-secondary: #A8A39A;
+    --color-text-muted: #77736D;
+    --color-border: #37352F;
+    --color-border-subtle: rgba(242, 240, 233, 0.10);
+    --color-border-strong: rgba(242, 240, 233, 0.22);
+    --color-accent: #B39A73;
+    --color-btn-bg: #F2F0E9;
+    --color-btn-text: #111110;
+    --color-input-bg: #1B1A18;
+    --color-backdrop-text: rgba(242, 240, 233, 0.05);
   }
 
   * {
-    border-color: var(--border-subtle);
+    border-color: var(--color-border);
   }
 
   html {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
@@ -63,20 +75,53 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Custom hairline borders and subtle aesthetics */
-.border-hairline {
-  border-width: 1px;
-  border-color: var(--border-subtle);
+/* Semantic utility classes */
+.bg-theme-primary {
+  background-color: var(--color-bg-primary);
 }
 
-.border-b-hairline {
-  border-bottom-width: 1px;
-  border-bottom-color: var(--border-subtle);
+.bg-theme-secondary {
+  background-color: var(--color-bg-secondary);
 }
 
-.border-t-hairline {
-  border-top-width: 1px;
-  border-top-color: var(--border-subtle);
+.bg-theme-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-theme-surface-raised {
+  background-color: var(--color-surface-raised);
+}
+
+.text-theme-primary {
+  color: var(--color-text-primary);
+}
+
+.text-theme-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-theme-muted {
+  color: var(--color-text-muted);
+}
+
+.border-theme {
+  border-color: var(--color-border);
+}
+
+.border-theme-subtle {
+  border-color: var(--color-border-subtle);
+}
+
+.text-bronze {
+  color: var(--color-accent);
+}
+
+.bg-bronze {
+  background-color: var(--color-accent);
+}
+
+.border-bronze {
+  border-color: var(--color-accent);
 }
 
 /* Custom delicate scrollbar */
@@ -96,15 +141,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(119, 115, 109, 0.5);
-}
-
-/* Noise texture overlay for high-end editorial feel */
-.bg-noise {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-.dark .bg-noise {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
-  background-size: 24px 24px;
 }

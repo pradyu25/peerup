@@ -70,10 +70,10 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
             <button
               onClick={onDiscussProject}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
             >
               <span>Discuss a software project</span>
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
             </button>
           </div>
         </div>
@@ -88,16 +88,25 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
               return (
                 <div
                   key={idx}
+                  tabIndex={0}
+                  role="button"
+                  aria-pressed={isSelected}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveModule(idx);
+                    }
+                  }}
                   onClick={() => setActiveModule(idx)}
-                  className={`p-5 rounded-xs border transition-all duration-200 cursor-pointer ${
+                  className={`p-5 rounded-xs border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73] ${
                     isSelected
-                      ? 'border-[#111110] dark:border-[#F2F0E9] bg-neutral-200/40 dark:bg-neutral-800/40 shadow-xs'
+                      ? 'border-[#B39A73] bg-neutral-200/40 dark:bg-neutral-800/40 shadow-xs'
                       : 'border-neutral-300/60 dark:border-neutral-800/60 hover:border-neutral-400'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-3">
-                      <IconComp size={16} className={isSelected ? 'text-[#C59B27]' : 'text-neutral-400'} />
+                      <IconComp size={16} className={isSelected ? 'text-[#B39A73]' : 'text-neutral-400'} />
                       <h4 className="text-sm font-bold font-display text-[#111110] dark:text-[#F2F0E9]">
                         {mod.title}
                       </h4>
@@ -115,11 +124,11 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
           </div>
 
           {/* Right: Technical Blueprint Console */}
-          <div className="lg:col-span-7 bg-[#111110] text-[#F2F0E9] p-6 sm:p-8 rounded-xs border border-neutral-800 flex flex-col justify-between font-mono-tech relative overflow-hidden">
+          <div className="lg:col-span-7 bg-[#EAE7E0]/70 dark:bg-[#111110] text-[#111110] dark:text-[#F2F0E9] p-6 sm:p-8 rounded-xs border border-neutral-300 dark:border-neutral-800 flex flex-col justify-between font-mono-tech relative overflow-hidden transition-colors">
             {/* Top Bar of Console */}
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-4 text-xs text-neutral-400">
+            <div className="flex items-center justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4 text-xs text-neutral-600 dark:text-neutral-400">
               <div className="flex items-center gap-2">
-                <GitBranch size={14} className="text-[#C59B27]" />
+                <GitBranch size={14} className="text-[#B39A73]" />
                 <span>ARCH_MODULE // {modules[activeModule].tag}</span>
               </div>
               <span className="text-[10px] text-neutral-500">PEERUP ENGINE SPEC v2.4</span>
@@ -129,20 +138,20 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
             <div className="py-8 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs text-neutral-500 uppercase tracking-wider">Module Identification</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-[#111110] dark:text-white">
                   {modules[activeModule].title}
                 </h3>
-                <p className="text-xs text-neutral-400 font-sans leading-relaxed">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 font-sans leading-relaxed">
                   {modules[activeModule].description}
                 </p>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-neutral-800/80">
-                <span className="text-xs text-[#C59B27] tracking-wider uppercase">Key Engineering Specifications:</span>
+              <div className="space-y-3 pt-4 border-t border-neutral-300 dark:border-neutral-800/80">
+                <span className="text-xs text-[#B39A73] tracking-wider uppercase font-semibold">Key Engineering Specifications:</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {modules[activeModule].specs.map((spec, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-xs text-neutral-300 bg-neutral-900/80 p-2.5 rounded-xs border border-neutral-800">
-                      <Shield size={12} className="text-[#C59B27] shrink-0" />
+                    <div key={i} className="flex items-center gap-2.5 text-xs text-[#111110] dark:text-neutral-300 bg-white/90 dark:bg-neutral-900/80 p-2.5 rounded-xs border border-neutral-300 dark:border-neutral-800 shadow-xs">
+                      <Shield size={12} className="text-[#B39A73] shrink-0" />
                       <span>{spec}</span>
                     </div>
                   ))}
@@ -151,11 +160,11 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
             </div>
 
             {/* Bottom Status Bar */}
-            <div className="border-t border-neutral-800 pt-4 flex justify-between items-center text-[10px] text-neutral-500">
+            <div className="border-t border-neutral-300 dark:border-neutral-800 pt-4 flex justify-between items-center text-[10px] text-neutral-500">
               <span>ZERO MOCK DATA · DIRECT ARCHITECTURE</span>
               <button
                 onClick={onDiscussProject}
-                className="text-[#C59B27] hover:underline underline-offset-4 cursor-pointer flex items-center gap-1"
+                className="text-[#B39A73] hover:underline underline-offset-4 cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:text-[#B39A73]"
               >
                 <span>INITIATE BLUEPRINT INQUIRY</span>
                 <ArrowUpRight size={12} />

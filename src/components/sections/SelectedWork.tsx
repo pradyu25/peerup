@@ -55,7 +55,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   type="button"
-                  className={`px-3 py-1.5 text-xs font-mono-tech tracking-wider uppercase rounded-full transition-all duration-200 cursor-pointer ${
+                  className={`px-3 py-1.5 text-xs font-mono-tech tracking-wider uppercase rounded-full transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73] ${
                     isActive
                       ? 'bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold'
                       : 'bg-transparent text-neutral-500 hover:text-[#111110] dark:hover:text-[#F2F0E9] border border-transparent hover:border-neutral-300 dark:hover:border-neutral-700'
@@ -75,17 +75,26 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
             return (
               <div
                 key={project.id}
+                tabIndex={0}
+                role="button"
+                aria-label={`View ${project.title} case study details`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedProjectModal(project);
+                  }
+                }}
                 onMouseEnter={() => setHoveredProjectId(project.id)}
                 onMouseLeave={() => setHoveredProjectId(null)}
                 onClick={() => setSelectedProjectModal(project)}
-                className="group cursor-pointer flex flex-col space-y-4"
+                className="group cursor-pointer flex flex-col space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B39A73] rounded-xs p-1"
               >
                 {/* Visual Container */}
                 <div className="relative aspect-16/10 w-full overflow-hidden rounded-xs border border-neutral-300/60 dark:border-neutral-800/60 transition-transform duration-500 group-hover:-translate-y-1">
                   <ProjectCardVisual projectId={project.id} isHovered={isHovered} />
 
                   {/* Corner Index Tag */}
-                  <div className="absolute top-3 left-3 bg-[#111110]/80 text-[#F2F0E9] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest backdrop-blur-xs">
+                  <div className="absolute top-3 left-3 bg-[#111110]/85 text-[#F2F0E9] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest backdrop-blur-xs">
                     {project.category}
                   </div>
                 </div>
@@ -93,7 +102,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
                 {/* Card Metadata */}
                 <div className="space-y-2 pt-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-mono-tech text-xs sm:text-sm font-semibold tracking-wider text-[#111110] dark:text-[#F2F0E9] flex items-center gap-2 group-hover:text-[#C59B27] transition-colors">
+                    <h3 className="font-mono-tech text-xs sm:text-sm font-semibold tracking-wider text-[#111110] dark:text-[#F2F0E9] flex items-center gap-2 group-hover:text-[#B39A73] transition-colors">
                       <span>{project.number} / {project.title}</span>
                     </h3>
                     <ArrowUpRight
@@ -126,7 +135,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
             {/* Modal Header */}
             <div className="flex items-start justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4">
               <div>
-                <span className="font-mono-tech text-xs text-[#C59B27] tracking-widest uppercase">
+                <span className="font-mono-tech text-xs text-[#B39A73] tracking-widest uppercase">
                   {selectedProjectModal.number} — {selectedProjectModal.category}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight mt-1">
@@ -136,7 +145,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
               <button
                 onClick={() => setSelectedProjectModal(null)}
                 aria-label="Close project modal"
-                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 <X size={16} />
               </button>
@@ -166,7 +175,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
                     key={i}
                     className="flex items-center gap-2 text-xs font-mono-tech text-neutral-600 dark:text-neutral-400 py-1"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B39A73]" />
                     <span>{del}</span>
                   </div>
                 ))}
@@ -178,7 +187,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = () => {
               <span>{selectedProjectModal.clientType}</span>
               <button
                 onClick={() => setSelectedProjectModal(null)}
-                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer"
+                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
               >
                 Close Project
               </button>
