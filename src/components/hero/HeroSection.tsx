@@ -30,9 +30,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* 02: SCULPTURE ANIMATION — SEAMLESS ON PAGE BACKGROUND */}
-        <div className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[560px] flex items-center justify-center my-2">
-          <GenerativeSculpture interactive={true} />
+        {/* 02: SCULPTURE ANIMATION — SEAMLESS ON PAGE BACKGROUND WITH PEERUP BACKDROP TEXT */}
+        <div className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[560px] flex items-center justify-center my-2 select-none">
+          {/* Peerup backdrop text behind animation — unclipped, fitting 100% cleanly */}
+          <div 
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-visible px-2 sm:px-4"
+          >
+            <span className="font-display font-black text-[13vw] sm:text-[13.8vw] md:text-[14.2vw] lg:text-[14.8vw] leading-none tracking-tighter uppercase text-[#111110]/[0.08] dark:text-[#F2F0E9]/[0.10] select-none transform scale-y-105 transition-colors duration-400 whitespace-nowrap text-center max-w-full">
+              PEERUP
+            </span>
+          </div>
+
+          {/* Interactive sculpture canvas */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center overflow-visible">
+            <GenerativeSculpture interactive={true} />
+          </div>
         </div>
 
         {/* 03: LOWER TWO-COLUMN EDITORIAL REGION */}

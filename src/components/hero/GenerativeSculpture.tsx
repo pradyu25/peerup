@@ -410,10 +410,15 @@ class LiquidEngine {
   private destroyed = false;
   private lost = false;
 
+  private currBg: [number, number, number] = [0.067, 0.067, 0.063];
+  private targetBg: [number, number, number] = [0.067, 0.067, 0.063];
+
   constructor(canvas: HTMLCanvasElement, opts: EngineOptions, onFail: () => void) {
     this.canvas = canvas;
     this.opts = opts;
     this.onFail = onFail;
+    this.currBg = [...opts.bg];
+    this.targetBg = [...opts.bg];
     const gl = canvas.getContext("webgl2", {
       alpha: true,
       antialias: false,
@@ -659,9 +664,9 @@ class LiquidEngine {
   }
 
   setOptions(o: Partial<EngineOptions>) {
+    if (o.bg) this.targetBg = [...o.bg];
     const rebuild =
-      (o.density !== undefined && o.density !== this.opts.density) ||
-      (o.imgBg !== undefined && String(o.imgBg) !== String(this.opts.imgBg));
+      (o.density !== undefined && o.density !== this.opts.density);
     this.opts = { ...this.opts, ...o };
     if (rebuild && this.ready && this.lastImage) {
       try {
@@ -881,7 +886,12 @@ class LiquidEngine {
     const base = o.ambient && !rm ? clamp(o.ambientIntensity, 0, 2) : 0;
     const amb = base + this.flowing * 0.85 * clamp(o.liquid, 0, 2) * (rm ? 0.3 : 1);
     const rest = o.restStyle === "particles" ? 1 : 0;
-    const [br, bg, bb] = o.bg;
+    
+    // Smoothly lerp background color in 60fps frame loop
+    this.currBg[0] += (this.targetBg[0] - this.currBg[0]) * 0.15;
+    this.currBg[1] += (this.targetBg[1] - this.currBg[1]) * 0.15;
+    this.currBg[2] += (this.targetBg[2] - this.currBg[2]) * 0.15;
+    const [br, bg, bb] = this.currBg;
     const [ir, ig, ib] = this.imgBg;
     const dpr = this.canvas.width / this.cssW;
     const pres = Math.max(this.presence, this.burst);
@@ -1122,19 +1132,32 @@ export const GenerativeSculpture: React.FC<{
     };
   }, [interactive]);
 
-  // Load / Swap image when activeSrc or theme changes
+  // Preload both dark and light sculpture images into memory on mount
+  const preloadedImagesRef = useRef<{ dark?: HTMLImageElement; light?: HTMLImageElement }>({});
+
+  useEffect(() => {
+    const darkImage = new Image();
+    darkImage.crossOrigin = "anonymous";
+    darkImage.src = '/images/sculpture-dark.webp';
+
+    const lightImage = new Image();
+    lightImage.crossOrigin = "anonymous";
+    lightImage.src = '/images/sculpture-light.webp';
+
+    preloadedImagesRef.current = { dark: darkImage, light: lightImage };
+  }, []);
+
+  // Load / Swap image synchronously when activeSrc or theme changes
   useEffect(() => {
     const engine = engineRef.current;
     if (!engine) return;
 
     let cancelled = false;
-    const image = new Image();
-    image.crossOrigin = "anonymous";
-    image.decoding = "async";
+    const targetPreloaded = isDark ? preloadedImagesRef.current.dark : preloadedImagesRef.current.light;
 
-    image.onload = () => {
+    const applyImage = (img: HTMLImageElement) => {
       if (cancelled) return;
-      aspectRef.current = image.naturalWidth / image.naturalHeight || aspectRef.current;
+      aspectRef.current = img.naturalWidth / img.naturalHeight || aspectRef.current;
       relayout();
       engine.onFirstFrame = () => {
         if (!cancelled) setGlReady(true);
@@ -1143,21 +1166,25 @@ export const GenerativeSculpture: React.FC<{
         bg: bgRgb,
         imgBg: isDark ? [0.067, 0.067, 0.063] : [0.92, 0.915, 0.905],
       });
-      engine.setImage(image);
+      engine.setImage(img);
       relayout();
     };
 
-    image.onerror = () => {
-      // Fallback to local reference
-      image.src = '/images/sculpture-ref.png';
-    };
-
-    image.src = activeSrc;
+    if (targetPreloaded && targetPreloaded.complete && targetPreloaded.naturalWidth > 0) {
+      applyImage(targetPreloaded);
+    } else {
+      const image = targetPreloaded || new Image();
+      image.crossOrigin = "anonymous";
+      image.decoding = "async";
+      image.onload = () => applyImage(image);
+      image.onerror = () => {
+        image.src = '/images/sculpture-ref.png';
+      };
+      if (!image.src) image.src = activeSrc;
+    }
 
     return () => {
       cancelled = true;
-      image.onload = null;
-      image.onerror = null;
     };
   }, [activeSrc, bgRgb, isDark, relayout]);
 

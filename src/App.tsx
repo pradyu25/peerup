@@ -13,6 +13,8 @@ import { JournalSection } from './components/sections/JournalSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { SiteFooter } from './components/footer/SiteFooter';
 
+import { ScrollReveal } from './components/ui/ScrollReveal';
+
 export const AppContent: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -70,45 +72,65 @@ export const AppContent: React.FC = () => {
         onNavigate={handleNavigate}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections with Framer Motion Reveal Animations */}
       <main>
         {/* Hero Section */}
-        <HeroSection
-          onStartProject={() => handleNavigate('contact')}
-          onViewWork={() => handleNavigate('work')}
-        />
+        <ScrollReveal yOffset={24} duration={0.8}>
+          <HeroSection
+            onStartProject={() => handleNavigate('contact')}
+            onViewWork={() => handleNavigate('work')}
+          />
+        </ScrollReveal>
 
         {/* 02 Selected Work */}
-        <SelectedWork />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <SelectedWork />
+        </ScrollReveal>
 
         {/* 03 Studio */}
-        <StudioSection />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <StudioSection />
+        </ScrollReveal>
 
         {/* 04 Approach */}
-        <ApproachSection />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <ApproachSection />
+        </ScrollReveal>
 
         {/* Software Engineering / Custom Software */}
-        <CustomSoftwareSection
-          onDiscussProject={() => handleNavigate('contact')}
-        />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <CustomSoftwareSection
+            onDiscussProject={() => handleNavigate('contact')}
+          />
+        </ScrollReveal>
 
         {/* Digital Products & Internal Tools */}
-        <ToolsProductsSection />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <ToolsProductsSection />
+        </ScrollReveal>
 
         {/* Capabilities & Services */}
-        <ServicesSection
-          onInquireService={() => handleNavigate('contact')}
-        />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <ServicesSection
+            onInquireService={() => handleNavigate('contact')}
+          />
+        </ScrollReveal>
 
         {/* 05 Journal */}
-        <JournalSection />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <JournalSection />
+        </ScrollReveal>
 
         {/* 06 Contact */}
-        <ContactSection />
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <ContactSection />
+        </ScrollReveal>
       </main>
 
       {/* Footer */}
-      <SiteFooter onNavigate={handleNavigate} />
+      <ScrollReveal yOffset={20} duration={0.6}>
+        <SiteFooter onNavigate={handleNavigate} />
+      </ScrollReveal>
     </div>
   );
 };

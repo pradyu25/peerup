@@ -29,7 +29,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
         <img
           src={logoSrc}
           alt="PeerUp Collective Emblem"
-          className="h-9 sm:h-10 w-auto max-h-10 object-contain"
+          className="h-14 sm:h-18 w-auto max-h-20 object-contain"
           style={logoStyle}
         />
       </div>
@@ -38,11 +38,11 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 
   if (variant === 'footer') {
     return (
-      <div className={`inline-flex items-center ${className}`}>
+      <div className={`inline-flex items-center w-full ${className}`}>
         <img
           src={logoSrc}
           alt="PeerUp Collective Emblem"
-          className="h-12 sm:h-14 w-auto max-h-14 object-contain"
+          className="w-3/4 max-w-[480px] h-auto object-contain"
           style={logoStyle}
         />
       </div>
@@ -55,7 +55,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       <img
         src={logoSrc}
         alt="PeerUp Collective Emblem"
-        className="h-8 sm:h-9 md:h-10 w-auto max-h-10 object-contain"
+        className="h-12 sm:h-16 md:h-20 w-auto max-h-20 object-contain"
         style={logoStyle}
       />
     </div>

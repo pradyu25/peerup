@@ -85,7 +85,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ onNavigate }) => {
 
         {/* Large Oversized Typographic Brandmark */}
         <div className="py-12 select-none pointer-events-none text-center overflow-hidden">
-          <span className="font-display font-black tracking-tighter text-[14vw] leading-none text-neutral-300/70 dark:text-neutral-800/60 block uppercase transition-colors">
+          <span className="font-display font-black tracking-tighter text-[18vw] sm:text-[20vw] md:text-[22vw] leading-none text-neutral-300/70 dark:text-neutral-800/60 block uppercase transition-colors">
             PEERUP
           </span>
         </div>
