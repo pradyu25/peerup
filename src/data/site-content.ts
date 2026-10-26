@@ -1,16 +1,32 @@
-import { Project, ServiceItem, ApproachStep, JournalArticle, ProductTool } from '../types';
+import { Project, ServiceItem, ApproachStep, JournalArticle, ProductTool, FounderProfile } from '../types';
 
 export const SITE_METADATA = {
   brandName: 'PEERUP',
-  descriptor: 'COLLECTIVE',
-  statement: 'We make ideas move.',
-  supportingStatement: 'We combine design, engineering and emerging technology to build digital products, distinct brands and meaningful experiences for a more ambitious tomorrow.',
-  founded: 'EST. 2019',
+  descriptor: 'PRODUCT LAB & VENTURES',
+  statement: 'Ideas into products. Products into businesses.',
+  supportingStatement: 'A founder-led technology initiative focused on building, launching, and growing useful digital products, developer tools, and intelligent software systems into sustainable businesses.',
+  founded: 'EST. 2024',
   location: 'HYDERABAD, INDIA',
-  presence: 'WORKING GLOBALLY',
+  presence: 'FOUNDER-LED PRODUCT LAB',
   contactEmail: 'hello@peerup.in',
-  taglineLeft: ['DESIGN', 'TECHNOLOGY', 'AI', 'EXPERIENCES'],
-  taglineRight: ['IDEAS', 'PEOPLE', 'PRODUCTS', 'A BRIGHTER TOMORROW']
+  taglineLeft: ['PRODUCTS', 'TECHNOLOGY', 'AI & ML', 'LABS'],
+  taglineRight: ['IDEAS', 'FOUNDER-LED', 'AUTOMATION', 'SUSTAINABLE BUSINESSES']
+};
+
+export const FOUNDER: FounderProfile = {
+  name: 'M. Pradyumna',
+  title: 'Founder & Product Builder',
+  bio: 'Specializing in Computer Science, Artificial Intelligence, Machine Learning, full-stack software development, and workflow automation. M. Pradyumna leads PeerUp as a hands-on product builder, taking software concepts from initial architectural design to functional, production-ready systems.',
+  expertise: [
+    'Computer Science & Algorithms',
+    'AI / ML Systems & Speech Pipelines',
+    'Full-Stack Web Architecture (React, TS, Node)',
+    'Process & Operational Automation',
+    'WebGL & Interactive Canvas Interfaces'
+  ],
+  background: 'Computer Science, AI/ML & Software Engineering',
+  location: 'Hyderabad, India',
+  email: 'hello@peerup.in'
 };
 
 export const PROJECTS: Project[] = [
@@ -18,13 +34,16 @@ export const PROJECTS: Project[] = [
     id: 'voicenote',
     number: '01',
     title: 'VOICENOTE',
-    subtitle: 'A focused AI-powered transcription tool for modern professionals.',
+    subtitle: 'Focused AI-powered transcription and smart synthesis environment.',
     category: 'AI & Automation',
+    platform: 'Web Application',
+    status: 'In Development',
     year: '2024',
-    description: 'An intelligent audio transcription and synthesis environment designed for creative directors and researchers. Features real-time speaker diarization, latency-critical local processing, and dynamic markdown export.',
-    clientType: 'Concept Architecture & Tooling',
-    deliverables: ['Custom Inference Pipeline', 'Minimalist Web Application', 'Audio Waveform Engine', 'Identity Design'],
-    accentColor: '#1A1918',
+    description: 'An intelligent audio transcription and note synthesis application built with privacy-conscious local processing pipelines, real-time waveform rendering, and markdown export.',
+    pricing: 'Free / Open Beta',
+    supportUrl: 'mailto:hello@peerup.in',
+    deliverables: ['Speech Inference Pipeline', 'Minimalist Web Application', 'Audio Waveform Engine', 'Local Privacy Controls'],
+    accentColor: '#00D9F5',
     imageAlt: 'Sleek monochromatic audio ribbon representing Voicenote sound analysis',
     featured: true
   },
@@ -32,27 +51,33 @@ export const PROJECTS: Project[] = [
     id: 'financedesk',
     number: '02',
     title: 'FINANCEDESK',
-    subtitle: 'A smart personal finance workspace for clarity and control.',
+    subtitle: 'Local-first personal finance workspace for spatial capital tracking.',
     category: 'Digital Products',
+    platform: 'Web Application',
+    status: 'Concept',
     year: '2024',
-    description: 'A purpose-built personal wealth and capital allocation operating system. Replaces bloated spreadsheets with spatial balance sheets, cashflow trajectory models, and tabular visual precision.',
-    clientType: 'Fintech Product Exploration',
-    deliverables: ['Design System', 'React & WebGL Spatial Charts', 'Local-First Encryption', 'Mobile Companion'],
-    accentColor: '#B39A73',
+    description: 'A purpose-built wealth and cashflow trajectory workspace. Designed to replace cluttered spreadsheets with spatial balance sheets, encrypted local storage, and tabular visual precision.',
+    pricing: 'In Active Build',
+    supportUrl: 'mailto:hello@peerup.in',
+    deliverables: ['Encrypted Local Storage', 'React & WebGL Financial Charts', 'Design System', 'Responsive Desktop Layout'],
+    accentColor: '#075BFF',
     imageAlt: 'Sculptural titanium terminal cube on stone representing FinanceDesk precision',
     featured: true
   },
   {
     id: 'sxpress',
     number: '03',
-    title: 'SXPRESS',
-    subtitle: 'Print, design and production for brands that stand out.',
-    category: 'Brand & Identity',
-    year: '2023',
-    description: 'A unified visual identity system and bespoke production portal bridging tactile physical paper craft with automated web-to-print pipelines for independent luxury labels.',
-    clientType: 'Production Collective',
-    deliverables: ['Brand Architecture', 'Bespoke Typography Specimen', 'Production Ordering Portal', 'Art Direction'],
-    accentColor: '#77736D',
+    title: 'SXPRESS PORTAL',
+    subtitle: 'Automated print and production order management system.',
+    category: 'Brand & Web',
+    platform: 'Web Application',
+    status: 'Beta',
+    year: '2024',
+    description: 'A unified production portal bridging physical print preparation with automated order submission pipelines for specialty paper craft and brand collateral.',
+    pricing: 'Internal / Private Beta',
+    supportUrl: 'mailto:hello@peerup.in',
+    deliverables: ['Order Management Dashboard', 'Asset Spec Validator', 'Web-to-Print Integration', 'Client Portal Interface'],
+    accentColor: '#702BFF',
     imageAlt: 'Textured architectural paper sheets and embossed typography for Sxpress',
     featured: true
   },
@@ -60,27 +85,33 @@ export const PROJECTS: Project[] = [
     id: 'synapse-core',
     number: '04',
     title: 'SYNAPSE CORE',
-    subtitle: 'Context-aware neural knowledge graph for distributed product teams.',
+    subtitle: 'Context-aware knowledge graph engine for distributed software teams.',
     category: 'AI & Automation',
+    platform: 'Developer Tool',
+    status: 'In Development',
     year: '2024',
-    description: 'A high-throughput vector intelligence engine that maps institutional memory, code dependencies, and project requirements into an intuitive visual graph.',
-    clientType: 'Enterprise R&D Prototype',
-    deliverables: ['Vector Graph Visualization', 'Sub-50ms Query Engine', 'Design System', 'API Architecture'],
-    accentColor: '#242321',
+    description: 'A vector mapping intelligence engine that links software requirements, code dependencies, and technical documentation into an intuitive visual graph.',
+    pricing: 'In Development',
+    supportUrl: 'mailto:hello@peerup.in',
+    deliverables: ['Vector Graph Mapping', 'Semantic Indexing Pipeline', 'Design System', 'API Specifications'],
+    accentColor: '#00D9F5',
     imageAlt: 'Constellation of neural connections and data points in generative 3D space',
     featured: false
   },
   {
     id: 'kinesis',
     number: '05',
-    title: 'KINESIS',
-    subtitle: 'Procedural motion design and generative brand identity system.',
-    category: 'Web Experiences',
-    year: '2023',
-    description: 'An experimental web-based dynamic branding generator that generates thousands of algorithmic logo variations responding to environmental sound, user interaction, and time of day.',
-    clientType: 'Experimental Creative Lab',
-    deliverables: ['Shader Development', 'GLSL Particle Simulation', 'Brand Guidelines', 'Interactive Web Portal'],
-    accentColor: '#B39A73',
+    title: 'KINESIS ENGINE',
+    subtitle: 'Procedural kinetic typography and generative particle shader system.',
+    category: 'Developer Tools',
+    platform: 'Web Application',
+    status: 'Live',
+    year: '2024',
+    description: 'An interactive web shader toolkit for real-time GLSL particle simulations, dynamic typography choreography, and generative canvas visual effects.',
+    pricing: 'Free & Open Source',
+    supportUrl: 'mailto:hello@peerup.in',
+    deliverables: ['GLSL Fragment Shaders', 'WebGL Particle Engine', 'TypeScript Integration Library'],
+    accentColor: '#F000E8',
     imageAlt: 'Dynamic swirling particle sculpture with generative kinetic curves',
     featured: false
   }
@@ -89,50 +120,38 @@ export const PROJECTS: Project[] = [
 export const SERVICES: ServiceItem[] = [
   {
     number: '01',
-    title: 'Brand and Design',
-    tagline: 'Identity systems, visual direction, brand applications, and digital design.',
-    description: 'We craft distinctive visual languages that express genuine substance. From typography and design systems to digital guidelines, we build brands that hold weight across digital and physical touchpoints.',
+    title: 'Product Architecture & Engineering',
+    tagline: 'End-to-end full-stack software development from concept to production.',
+    description: 'We partner on select technical commissions to architect and build resilient web applications, custom software platforms, and local-first databases.',
     capabilities: [
-      'Visual Identity Systems',
-      'Editorial Typography & Layout',
-      'Design Systems & Tokens',
-      'Art Direction & Motion Guidelines'
+      'Full-Stack Web Applications (React, TS, Node)',
+      'Operational Dashboards & Workspaces',
+      'API Engineering & System Integration',
+      'Secure Local-First Software Architecture'
     ]
   },
   {
     number: '02',
-    title: 'Web and Digital Experiences',
-    tagline: 'Responsive websites, interactive experiences, and digital products.',
-    description: 'We architect and engineer bespoke digital destinations that captivate and perform. Fast, accessible, and choreographed with deliberate motion that elevates the story.',
+    title: 'AI & Automation Systems',
+    tagline: 'Custom Machine Learning pipelines, speech inference, and workflow automation.',
+    description: 'Practical, intelligence-driven software engineering. We design custom LLM workflows, speech processing pipelines, and internal process automation.',
     capabilities: [
-      'Bespoke Creative Websites',
-      'WebGL & Generative Visuals',
-      'Interactive Design & Micro-animations',
-      'Performance & SEO Architecture'
+      'Custom AI & Speech Inference Pipelines',
+      'Process & Workflow Automation',
+      'Multimodal Data Analysis',
+      'Context-Aware Knowledge Graph Systems'
     ]
   },
   {
     number: '03',
-    title: 'AI and Automation',
-    tagline: 'Intelligent workflows, AI-assisted systems, and useful automation.',
-    description: 'We cut through the noise of AI hype to engineer practical intelligence. We build custom agent workflows, inference pipelines, and smart automation that liberate human teams.',
+    title: 'Interactive WebGL & Web Experiences',
+    tagline: 'High-performance interactive web destinations, shaders, and visual design.',
+    description: 'Fast, responsive web applications engineered with 60 FPS GLSL shaders, accessible interfaces, and typography systems.',
     capabilities: [
-      'Custom LLM & Agent Pipelines',
-      'Internal Workflow Automation',
-      'Multimodal Data Processing',
-      'Context & RAG Architecture'
-    ]
-  },
-  {
-    number: '04',
-    title: 'Custom Software',
-    tagline: 'Purpose-built applications, integrations, internal tools, and software platforms.',
-    description: 'Software that fits your actual operations like tailored garments. We build resilient web applications, bespoke operational dashboards, and seamless API integrations.',
-    capabilities: [
-      'Full-Stack Web Applications',
-      'Operational Cockpits & Dashboards',
-      'API Engineering & Integrations',
-      'Secure Local-First Databases'
+      'Bespoke Web Applications',
+      'WebGL Shaders & Generative Graphics',
+      'Design Systems & Visual Identity',
+      'Performance Optimization & Web Vitals'
     ]
   }
 ];
@@ -142,27 +161,33 @@ export const TOOLS: ProductTool[] = [
     id: 'glyphcraft',
     name: 'GlyphCraft',
     tagline: 'Generative ASCII & typography shader engine for React & Three.js',
-    description: 'A high-performance WebGL shader pipeline that transforms 3D meshes and video inputs into procedural ASCII characters, halftone particles, and vector dot matrices.',
-    badge: 'Open Toolkit',
-    status: 'Available',
+    description: 'A high-performance WebGL shader pipeline that transforms 3D meshes and video inputs into procedural ASCII characters, halftone particles, and vector matrices.',
+    badge: 'Developer Tool',
+    status: 'Live',
+    platform: 'Developer Tool',
+    pricing: 'Free & Open Source',
     features: ['60 FPS WebGL Execution', 'Zero-bundle font glyph rendering', 'Light & dark optical compensation', 'Custom character ramps']
   },
   {
     id: 'peerup-trace',
     name: 'PeerUp Trace',
-    tagline: 'Micro-interaction and rendering latency profiler for creative web apps',
+    tagline: 'Micro-interaction and rendering latency profiler for web applications',
     description: 'A developer utility that monitors frame jitter, animation compositing bottlenecks, and scroll hitching in motion-heavy frontend experiences.',
-    badge: 'Developer Tool',
+    badge: 'Developer Utility',
     status: 'Beta',
+    platform: 'Developer Tool',
+    pricing: 'Free Beta',
     features: ['Real-time frame budget audit', 'Layout shift detector', 'GPU compositor timeline', 'Headless Lighthouse integration']
   },
   {
     id: 'cadence-ai',
     name: 'Cadence Engine',
     tagline: 'Context-aware orchestrator for design-to-code pipelines',
-    description: 'Automates token synchronization between Figma variables, Tailwind CSS themes, and production React components with zero manual translation errors.',
+    description: 'Synchronizes design tokens, Tailwind CSS variables, and production React components with automated AST verification.',
     badge: 'Internal Product',
-    status: 'Available',
+    status: 'In Development',
+    platform: 'AI System',
+    pricing: 'Internal R&D',
     features: ['Bi-directional token sync', 'Automated AST linting', 'Accessibility contrast verifier', 'Multi-brand export']
   }
 ];
@@ -170,77 +195,77 @@ export const TOOLS: ProductTool[] = [
 export const APPROACH_STEPS: ApproachStep[] = [
   {
     number: '01',
-    title: 'DISCOVER',
-    headline: 'Understand the real opportunity',
-    description: 'We deconstruct the core objectives, user constraints, and technological landscape to identify the single most impactful path forward.',
-    deliverables: ['Opportunity Mapping', 'Technical Feasibility Audit', 'User Flow Blueprint'],
-    duration: 'Week 1 — 2'
+    title: 'PROBLEM AUDIT',
+    headline: 'Identify genuine market and user needs',
+    description: 'We evaluate real user friction, software gaps, and technological feasibility to define a focused product value proposition.',
+    deliverables: ['Problem Definition', 'Technical Feasibility Audit', 'Product Roadmap'],
+    duration: 'Phase 1'
   },
   {
     number: '02',
-    title: 'DESIGN',
-    headline: 'Shape meaningful experiences',
-    description: 'We formulate the visual language, typographic hierarchy, and interactive prototypes with relentless attention to tactile refinement and clarity.',
-    deliverables: ['Design System Architecture', 'Interactive Prototypes', 'Art Direction & Motion Language'],
-    duration: 'Week 3 — 5'
+    title: 'ARCHITECTURE & PROTOTYPE',
+    headline: 'Design and validate functional prototypes',
+    description: 'We formulate the software architecture, data schemas, visual interfaces, and functional prototypes with emphasis on clarity and performance.',
+    deliverables: ['System Architecture Blueprint', 'Interactive UI Prototypes', 'Data & State Model'],
+    duration: 'Phase 2'
   },
   {
     number: '03',
-    title: 'BUILD',
-    headline: 'Engineer for scale and performance',
-    description: 'We write clean, strictly-typed code built on proven modern foundations, verifying latency budgets, responsive viewports, and semantic integrity.',
-    deliverables: ['Production Frontend & APIs', 'WebGL / Canvas Choreography', 'Accessibility & SEO Hardening'],
-    duration: 'Week 6 — 9'
+    title: 'ENGINEERING & BUILD',
+    headline: 'Write resilient, strictly-typed production code',
+    description: 'We build clean React, TypeScript, and WebGL codebases, verifying performance budgets, responsiveness, and accessibility standards.',
+    deliverables: ['Production Application Codebase', 'API & Database Integration', 'Performance & SEO Hardening'],
+    duration: 'Phase 3'
   },
   {
     number: '04',
-    title: 'LAUNCH',
-    headline: 'Support, iterate and grow',
-    description: 'We conduct rigorous cross-device audits, deploy to global infrastructure, monitor real-world performance, and guide iterative evolution.',
-    deliverables: ['Global Edge Deployment', 'Performance & Core Web Vitals Audit', 'Long-term Maintenance Framework'],
-    duration: 'Week 10+'
+    title: 'LAUNCH & VENTURE GROWTH',
+    headline: 'Release, gather real usage, and scale',
+    description: 'We deploy to resilient global edge infrastructure, monitor real-world performance, iterate on feedback, and grow products into sustainable ventures.',
+    deliverables: ['Global Deployment', 'User Feedback Loops', 'Long-term Venture Iteration'],
+    duration: 'Phase 4'
   }
 ];
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
-    id: 'designing-ai-tools',
-    title: 'Designing AI tools people actually use.',
-    category: 'Design & AI',
-    date: 'APR 12, 2024',
+    id: 'building-useful-products-first',
+    title: 'Ideas into products. Products into businesses.',
+    category: 'Venture Strategy',
+    date: 'MAY 18, 2024',
     readTime: '4 min read',
-    excerpt: 'Why conversational chat boxes are often the wrong UI for AI, and how spatial, direct-manipulation interfaces return agency to users.',
+    excerpt: 'Why the founder-led product lab model focuses on utility, software craftsmanship, and sustainable iteration over premature venture scaling.',
     content: [
-      'The past two years saw an explosion of software slapping a prompt input box onto every imaginable workflow. While conversational LLMs excel at open-ended brainstorming, professionals do not want to negotiate via chat for tasks they could accomplish with two deliberate clicks.',
-      'At PeerUp, we approach AI design from the principle of augmented agency: the machine should handle high-dimensional computation, semantic synthesis, and pattern extraction, while the human retains spatial oversight and high-bandwidth control.',
-      'When building Voicenote, we stripped away the omnipresent chatbot assistant in favor of real-time typography markers, semantic margin annotations, and visual audio waveforms that respond under 20 milliseconds.',
-      'Matter becomes meaning when interfaces respect the user’s cognitive rhythm rather than forcing them to play conversational ping-pong with a machine.'
+      'Building sustainable software businesses begins with a fundamental truth: a product must solve a real problem with undeniable utility before it warrants complex business engineering.',
+      'At PeerUp, we operate as a founder-led product lab. Led by M. Pradyumna, our approach combines Computer Science fundamentals, AI/ML pipelines, and full-stack software development.',
+      'By staying lean and focused on building functional products, we validate ideas in the real world—transitioning software from initial concept to active usage, and ultimately into self-sustaining ventures.'
     ]
   },
   {
-    id: 'what-makes-a-brand-feel-alive',
-    title: 'What makes a brand feel alive?',
-    category: 'Visual Culture',
+    id: 'designing-ai-tools',
+    title: 'Designing AI software that augments human intent.',
+    category: 'AI & Software',
+    date: 'APR 12, 2024',
+    readTime: '5 min read',
+    excerpt: 'Why conversational chatbots are often the wrong interface for specialized workflows, and how direct manipulation returns agency to users.',
+    content: [
+      'Many recent software tools slapped a prompt input box onto every workflow. While conversational LLMs excel at open-ended inquiry, specialized professionals prefer deliberate direct-manipulation tools.',
+      'We design AI software around human agency: computation, speech inference, and pattern recognition happen in the background, while the user maintains spatial oversight.',
+      'Whether building speech transcription tools like Voicenote or vector mapping engines like Synapse Core, software should empower the user rather than force them into conversational ping-pong.'
+    ]
+  },
+  {
+    id: 'local-first-software-craftsmanship',
+    title: 'The discipline of local-first software engineering.',
+    category: 'Engineering & Craft',
     date: 'MAR 26, 2024',
     readTime: '5 min read',
-    excerpt: 'Beyond logos and color swatches: how kinetic typography, procedural physics, and responsive design systems breathe organic vitality into modern identities.',
+    excerpt: 'How local-first encryption, responsive WebGL interfaces, and performance budgets restore speed, privacy, and dignity to web software.',
     content: [
-      'Traditional branding was forged in the era of static print: a rigid logo, an authoritative Pantone swatch, and a static brand book. In today’s interactive reality, a brand is not an immutable stone monument—it is a living, breathing software entity.',
-      'A living brand has physical behavior: weight, friction, elasticity, and pacing. When a user scrolls, the brand responds with deliberate deceleration. When night falls, the typography adapts optical weights for dark luminance.',
-      'We explore how kinetic systems create emotional resonance without resorting to superficial eye candy. Restraint is the highest form of creative confidence.'
-    ]
-  },
-  {
-    id: 'building-for-a-more-creative-future',
-    title: 'Building for a more creative future.',
-    category: 'Engineering & Craft',
-    date: 'FEB 16, 2024',
-    readTime: '6 min read',
-    excerpt: 'Bridging the chasm between raw mathematical computing and bespoke artistic expression through creative software engineering.',
-    content: [
-      'The best digital work always emerges at the boundaries where engineering and art collide. When software engineers understand typographic grids and designers understand shader uniforms, compromises disappear.',
-      'In our Hyderabad studio, we treat code as a direct sculpting material. We write custom GLSL fragment shaders to create organic particle currents and procedural ASCII typography that cannot be mocked up in a static Figma canvas.',
-      'We believe the next generation of digital products will not belong to generic SaaS factories, but to small, deeply curious collectives who care about the soul of what they build.'
+      'Modern web software often suffers from excessive network latency and remote server dependency. Local-first software engineering returns ownership and sub-16ms response times to the user.',
+      'By combining encrypted browser storage, WebGL canvas shaders, and strictly-typed TypeScript pipelines, web applications can execute at native desktop speeds.',
+      'At PeerUp, we treat code as direct craftsmanship. We write custom fragment shaders and local data models to ensure our products feel instantaneous, resilient, and private.'
     ]
   }
 ];
+

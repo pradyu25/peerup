@@ -1,0 +1,718 @@
+# PeerUp Collective — Complete Website Theme Transformation
+
+## Project Objective
+
+Transform the entire existing PeerUp Collective website into a cohesive, premium, futuristic technology brand using the approved new visual direction and moodboard.
+
+**Repository:** `pradyu25/peerup`  
+**Website:** `https://peerup.in`  
+**Brand:** PeerUp Collective  
+**Year established:** 2024  
+**Brand positioning:** Founder-led product company with a product-lab and venture-building approach.
+
+This is a complete visual-system and UI-consistency update across the existing website, not a homepage-only redesign.
+
+Preserve the existing React application, working functionality, content architecture, interactive components, and distinctive creative identity wherever possible. Do not rebuild the website from scratch or replace functional features with static mockups.
+
+The finished website should feel like a premium, modern technology company: minimal, expressive, futuristic, polished, and recognizable through its electric cyan–blue–violet–magenta gradients.
+
+---
+
+# 1. Design Direction
+
+Follow the approved PeerUp moodboard and updated homepage reference.
+
+The overall visual direction should combine:
+
+- A clean, near-white background.
+- Electric blue, cyan, violet, and magenta gradients.
+- Large editorial typography.
+- High-quality abstract 3D visual elements.
+- Soft ambient light and atmospheric gradient backgrounds.
+- Fine geometric lines, orbital curves, and subtle particle details.
+- Minimal navigation and generous whitespace.
+- Premium cards with restrained borders, subtle shadows, and occasional glass effects.
+- Carefully controlled animations and transitions.
+- Consistent branding across every section and page.
+
+The website should not look like a generic SaaS template, gaming website, or overly saturated neon dashboard.
+
+Use gradients as a deliberate visual signature, not as decoration on every element. Maintain clear hierarchy, readability, whitespace, and restraint.
+
+## Core visual principle
+
+**Light, minimal surfaces + expressive gradient accents + dark editorial typography + dimensional 3D artwork.**
+
+The website should look sophisticated even when animations are disabled or visual effects are not supported.
+
+---
+
+# 2. Brand Color System
+
+Create a centralized design-token system and apply it consistently across the application.
+
+## 2.1 Primary brand colors
+
+Use these colors as the starting point for the logo, buttons, links, illustrations, active states, and gradient artwork.
+
+| Token | Hex | Purpose |
+|---|---|---|
+| Electric Cyan | `#00D9F5` | Highlights, luminous details, gradient beginnings |
+| Electric Blue | `#075BFF` | Primary brand color, links, actions |
+| Electric Violet | `#702BFF` | Gradient transitions and secondary accents |
+| Neon Magenta | `#F000E8` | Final gradient accent and selected highlights |
+
+The primary brand gradient should move through these colors:
+
+`#00D9F5 → #075BFF → #702BFF → #F000E8`
+
+Use the gradient for primary calls to action, selected text, decorative artwork, progress indicators, active navigation accents, and appropriate product graphics.
+
+Do not apply the full gradient to long paragraphs, every heading, or every button.
+
+## 2.2 Light theme colors
+
+Use a clean, subtly cool, premium background rather than the previous warm cream as the dominant website surface.
+
+| Token | Hex | Purpose |
+|---|---|---|
+| Background | `#FAFAFC` | Main page background |
+| Surface | `#F2F4F8` | Cards, panels, secondary surfaces |
+| Border | `#E3E8F0` | Dividers, card outlines, input borders |
+| Primary Text | `#0F1221` | Headings and primary content |
+| Secondary Text | `#5D6680` | Paragraphs, descriptions, supporting labels |
+| Muted Text | `#7C86A0` | Captions and secondary metadata |
+| White | `#FFFFFF` | Elevated cards and selected surfaces |
+
+Avoid using pure white everywhere. Alternate the background, surface, and white card layers subtly to establish depth.
+
+Use light cyan, blue, violet, and pink atmospheric gradients at low opacity. The background must remain predominantly light and text must remain easy to read.
+
+## 2.3 Dark theme colors
+
+Implement a coordinated dark theme using:
+
+| Token | Hex | Purpose |
+|---|---|---|
+| Dark Background | `#050712` | Main dark-mode background |
+| Elevated Background | `#0A0F2C` | Sections and large panels |
+| Secondary Surface | `#10182F` | Cards and containers |
+| Dark Border | `#293451` | Dividers and outlines |
+| Primary Text | `#F5F7FF` | Headings |
+| Secondary Text | `#A7B2CD` | Body text |
+| Accent | `#00D9F5` | Highlights and interactive details |
+
+Allow violet, blue, and magenta glows to emerge from selected background areas.
+
+Dark mode should feel like a premium midnight technology environment, not a black page with randomly glowing components.
+
+Preserve the existing theme toggle and ensure it changes every relevant component, including menus, cards, forms, modals, footers, illustrations, and overlays.
+
+## 2.4 Gradient presets
+
+Create reusable gradient tokens instead of repeatedly writing unrelated gradient values.
+
+**Primary brand gradient**
+- Cyan → Blue → Violet → Magenta.
+- Used for primary buttons, selected wordmarks, small accents, and key brand elements.
+
+**Soft ambient gradient**
+- Very pale cyan, blue, lavender, and pink.
+- Used behind hero content and selected sections.
+
+**Radial glow**
+- A concentrated blue/violet/magenta glow fading smoothly into transparency.
+- Used behind artwork, product visuals, and feature highlights.
+
+**Midnight gradient**
+- Deep navy transitioning through dark blue and violet.
+- Used for dark feature sections, premium banners, and selected dark-mode surfaces.
+
+**Glass gradient**
+- Translucent white or dark surfaces with subtle gradient highlights.
+- Used sparingly for floating panels, navigation controls, and selected overlays.
+
+Use CSS custom properties for the color tokens and gradient presets. Ensure the gradient transitions remain smooth and do not create harsh color bands.
+
+---
+
+# 3. Typography System
+
+Audit the existing typography and establish a consistent type scale across the whole site.
+
+Use the existing font setup if it already provides the desired quality. If adjustments are necessary, prefer:
+
+- **Display and headings:** Inter or an existing premium sans-serif.
+- **Editorial accent text:** Plus Jakarta Sans or a compatible serif italic for selected words.
+- **Body text:** Inter or a similarly readable sans-serif.
+- **Small technical labels:** A restrained monospace font.
+
+Avoid adding multiple font families without a clear purpose.
+
+## Heading treatment
+
+Use large, confident headings with strong spacing and a clear typographic hierarchy.
+
+For example:
+
+- Main heading: “Ideas into products.”
+- Supporting heading: “Building digital products for a better tomorrow.”
+- Eyebrow label: “FOUNDER-LED PRODUCT LAB & VENTURES”
+
+Where appropriate, style one key word in a blue–violet–magenta gradient or elegant italic treatment.
+
+Keep most heading text dark in light mode and near-white in dark mode.
+
+Use letter spacing for compact uppercase labels, navigation items, categories, and technical metadata. Do not apply excessive tracking to body paragraphs.
+
+Ensure headings scale fluidly using responsive typography such as `clamp()`.
+
+---
+
+# 4. Header, Navigation, and Branding
+
+Update the complete header system.
+
+## Desktop header
+
+- Use a clean, spacious, near-white or translucent header.
+- Keep the current PeerUp logo asset for now.
+- Preserve the existing navigation structure where possible.
+- Maintain clear spacing between the logo, navigation, theme toggle, and menu control.
+- Use small, refined hover indicators for active navigation items.
+- Prefer a subtle gradient underline or small accent rather than a large glowing navigation button.
+- Use thin borders, restrained shadows, and soft backdrop blur only where appropriate.
+- Ensure the header remains legible over gradients and artwork.
+
+Retain the existing navigation items unless a content restructure requires a justified change. The site may include Products, Labs, About, Services, and Contact.
+
+## Mobile navigation
+
+- Preserve the existing menu functionality.
+- Create a polished full-screen or appropriately sized mobile navigation panel.
+- Use generous touch targets, readable labels, and clear active states.
+- Add smooth entrance and exit transitions.
+- Prevent content from scrolling behind an open modal menu.
+- Ensure keyboard and screen-reader users can operate the menu.
+
+## Logo handling — important
+
+I will provide updated PeerUp logo files later.
+
+Until then:
+
+1. Continue using the existing logo assets already in the repository.
+2. Do not generate a replacement logo.
+3. Do not redraw, distort, crop, stretch, or destructively modify the existing logo.
+4. Preserve its aspect ratio and ensure it remains clear on both light and dark backgrounds.
+5. If an existing logo variant has poor contrast on a particular background, place it on a suitable surface or use another existing asset if available.
+6. Do not invent a logo asset path or reference a file that does not exist.
+7. Keep logo usage centralized so the new assets can be substituted later without editing every page.
+
+Do not attempt to recreate the final logo colors by placing CSS filters over the logo image.
+
+---
+
+# 5. Homepage Hero — Highest Priority
+
+Transform the homepage hero to match the approved reference.
+
+The hero should be the strongest expression of the new brand identity.
+
+## Layout
+
+Create a balanced, spacious hero with:
+
+- The existing PeerUp branding in the header.
+- A prominent, oversized “PEERUP” wordmark treatment behind or around the central artwork, where appropriate.
+- A central abstract, dimensional 3D ribbon or flowing particle sculpture.
+- Fine orbital curves, geometric arcs, and floating gradient spheres.
+- A restrained, atmospheric cyan–blue–violet–magenta glow.
+- A clear content block containing the brand message.
+- Carefully positioned secondary labels or category markers.
+- A visible primary CTA and a secondary CTA.
+
+Use the existing Three.js and animation infrastructure if it already powers the hero. Do not introduce a second competing animation system.
+
+## Hero copy
+
+Use the following content unless existing verified copy is more appropriate:
+
+Eyebrow:
+“FOUNDER-LED PRODUCT LAB & VENTURES”
+
+Main heading:
+“Ideas into products.”
+
+Supporting copy:
+“Building digital products for a better tomorrow.”
+
+Primary CTA:
+“Explore Products”
+
+Secondary CTA:
+“Learn More”
+
+The primary CTA should navigate to the real products section or product listing. The secondary CTA should navigate to the relevant About or studio section.
+
+## Hero artwork
+
+Use the existing 3D sculpture and particle effects where they can be adapted.
+
+- Shift its visual appearance from muted beige/bronze to the new cyan–blue–violet–magenta identity.
+- Introduce bright cyan and blue highlights, violet transitions, and magenta particles.
+- Keep the sculpture visually detailed but not excessively bright.
+- Use soft light, translucent strands, and subtle depth.
+- Ensure the hero headline remains readable over the artwork.
+- Avoid allowing decorative elements to obscure navigation or CTAs.
+- Use responsive sizing and an appropriate mobile composition.
+- Provide a static or simplified fallback for low-performance devices and reduced-motion preferences.
+
+Do not simply apply a colored overlay to a beige sculpture if the result looks artificial. Rework the available materials, lighting, shader colors, and particle settings where feasible.
+
+If a new image asset is required, use a suitable existing asset or create a clearly documented placeholder that can be replaced later. Do not reference nonexistent assets.
+
+---
+
+# 6. Background System and Visual Atmosphere
+
+Apply a consistent background language throughout the website.
+
+## Light theme
+
+Use `#FAFAFC` as the main canvas with subtle atmospheric gradients:
+
+- A soft cyan glow near selected upper or side edges.
+- A pale blue or violet radial glow behind important artwork.
+- A restrained pink glow near the opposite edge.
+- Fine geometric curves or orbital lines in selected sections.
+- Small gradient spheres or abstract particles only where they improve the composition.
+
+Keep most of the page background clean. Avoid turning every section into a colorful gradient panel.
+
+Use opacity, blur, masks, and radial gradients to keep decorative elements atmospheric rather than dominant.
+
+## Dark theme
+
+Use `#050712` as the foundation.
+
+Introduce deep navy and violet surfaces with carefully controlled blue/cyan/magenta lighting. Keep the strongest glows around hero artwork and a small number of feature sections.
+
+## Decorative elements
+
+Create reusable decorative components or styles for:
+
+- Ambient radial glows.
+- Fine geometric lines.
+- Orbital curves.
+- Gradient spheres.
+- Subtle mesh gradients.
+- Soft particle effects.
+- Glass surfaces.
+
+Decorative elements must be non-interactive unless they have a clear functional purpose. Hide unnecessary decoration from assistive technologies and prevent it from blocking clicks or text selection.
+
+Avoid excessive blur layers, giant shadows, or continuous particle animations that damage performance.
+
+---
+
+# 7. Update Every Existing Website Section
+
+Do not stop after the hero. Audit all sections and apply the new design system to every existing portion of the website.
+
+## 7.1 Products and product directory
+
+Update the existing product section and `ToolsProductsSection.tsx`.
+
+- Use consistent product cards with clean surfaces, subtle borders, and restrained shadows.
+- Add gradient illustrations or product imagery where appropriate.
+- Use a clear heading, concise description, product category, and status label.
+- Make primary links visually identifiable.
+- Use gradient accents for important actions rather than entire card backgrounds.
+- Maintain consistent card spacing, heights, and responsive grids.
+- Ensure product cards work on mobile and keyboard navigation.
+- Clearly distinguish released products, beta products, experiments, and concepts.
+- Only display real external links when available.
+- Do not invent download links, prices, product metrics, or product availability.
+- Provide a polished empty or coming-soon state when no products are ready.
+
+Make product data easy to maintain centrally so future website, Google Play, App Store, and desktop product links can be added without redesigning the section.
+
+## 7.2 Labs and experiments
+
+Update the Labs section to communicate product exploration and experimentation.
+
+- Use a more exploratory visual style while retaining the same typography, spacing, borders, and palette.
+- Introduce subtle gradients and technical labels.
+- Display actual experiments and prototypes with truthful status labels.
+- Avoid presenting ideas as completed or launched products.
+- Use consistent cards and detail links.
+- If appropriate, use small visual distinctions between prototypes and released products.
+
+## 7.3 About and studio story
+
+Update the About section and existing studio-story modal.
+
+- Use a strong editorial heading.
+- Introduce the mission and product-building philosophy.
+- Add a founder profile for M. Pradyumna, Founder & Product Builder.
+- Keep the founder description concise and factual.
+- Explain the long-term ambition to develop useful products and grow promising ideas into sustainable businesses.
+- Use the established brand colors for small accents and important words.
+- Keep paragraphs readable with generous line height and sensible maximum widths.
+- Ensure the modal uses the same light and dark theme tokens as the rest of the site.
+
+Do not claim company registration, legal incorporation, client achievements, or partnerships without confirmation.
+
+## 7.4 Services
+
+Retain services that are genuinely offered, but present them as a supporting capability rather than making the entire brand look like a conventional service agency.
+
+- Use clean service cards and clear descriptions.
+- Keep icon styles consistent.
+- Use small gradient accents, not multicolored icon overload.
+- Preserve existing working links and service interactions.
+- Remove or rewrite unverified claims.
+
+## 7.5 Custom software and technology sections
+
+Update any existing custom-software, technology, AI/ML, and automation sections.
+
+- Use a clean technical editorial layout.
+- Introduce dark navy or gradient feature panels selectively.
+- Use restrained diagrams, visual markers, and product imagery where useful.
+- Ensure technical details are readable.
+- Avoid excessive glowing borders and dense dashboard-style layouts.
+- Keep these sections aligned with the light-first design system.
+
+## 7.6 Selected work and project portfolio
+
+Update `SelectedWork` and related project cards.
+
+- Preserve legitimate project content and functionality.
+- Use consistent image aspect ratios and card spacing.
+- Add subtle hover elevation and controlled image transitions.
+- Apply the same color system to filters, tags, category labels, and active states.
+- Ensure project descriptions remain accurate.
+- Do not invent case studies, clients, performance metrics, or results.
+- Distinguish client work from internal products and experiments where necessary.
+
+## 7.7 Journal or insights
+
+Update the journal listing and article cards.
+
+- Use a clean editorial layout.
+- Establish clear typography for titles, dates, categories, and excerpts.
+- Use subtle separators, hover states, and restrained accent colors.
+- Ensure article pages, if present, share the same design system.
+- Retain only accurate publication metadata and claims.
+
+## 7.8 Contact section
+
+Create a clean, premium contact experience.
+
+- Use clear headings and concise supporting copy.
+- Style inputs with subtle borders, readable labels, visible focus states, and consistent corner radii.
+- Use a gradient for the primary submit button.
+- Make validation messages easy to understand.
+- Provide visible success and error states.
+- Preserve the existing working contact integration.
+- Never simulate a successful form submission if no backend or service actually processes it.
+
+## 7.9 Footer
+
+Update the footer to match the new brand.
+
+- Use consistent logo placement and spacing.
+- Maintain readable navigation and contact links.
+- Use a subtle divider and a restrained gradient accent.
+- Keep copyright and establishment information accurate.
+- Ensure all links work and have clear hover/focus states.
+- Apply the same footer system across all pages.
+
+## 7.10 Modals, overlays, filters, forms, and utility controls
+
+Audit every existing secondary interface, not just the main sections.
+
+Update:
+
+- Studio-story modal.
+- Full-screen navigation.
+- Product filters.
+- Theme toggle.
+- Contact forms.
+- Waitlist or signup interfaces.
+- Dropdowns and popovers.
+- Loading and empty states.
+- Error and success messages.
+- Floating controls.
+- Any mobile-specific overlays.
+
+No component should retain the old bronze/cream styling accidentally after the main theme changes.
+
+---
+
+# 8. Cards, Buttons, Inputs, and Component Styling
+
+Create shared visual rules for reusable UI components.
+
+## Cards
+
+- Use consistent border radii and padding.
+- Use `#FFFFFF` or `#F2F4F8` in light mode, with suitable dark equivalents.
+- Apply thin `#E3E8F0` borders in light mode.
+- Use restrained shadows and subtle gradient highlights.
+- Introduce glassmorphism only for floating or decorative elements where it adds value.
+- Use consistent hover behavior across related card types.
+
+## Buttons
+
+Create shared primary, secondary, tertiary, and icon-button variants.
+
+**Primary button**
+- Dark text or white text according to the actual gradient contrast.
+- Brand gradient background.
+- Soft glow only on hover or focus where appropriate.
+- Smooth but quick transitions.
+
+**Secondary button**
+- Transparent or surface background.
+- Thin border.
+- Dark text in light mode and light text in dark mode.
+- Blue or violet border emphasis on hover.
+
+**Tertiary button**
+- Minimal background.
+- Clear text and restrained gradient accent.
+
+**Icon button**
+- Consistent size and shape.
+- Accessible label.
+- Visible keyboard focus.
+- Suitable hover state.
+
+Do not make every button glow continuously.
+
+## Inputs and forms
+
+Use consistent height, padding, border radius, focus ring, placeholder color, and error treatment. Inputs must remain accessible in both themes.
+
+---
+
+# 9. Animation and Interaction
+
+Use the existing Framer Motion and Three.js infrastructure wherever appropriate.
+
+Create a coherent motion language:
+
+- Gentle fade and translate transitions.
+- Subtle reveal animations for section content.
+- Controlled hover elevation on cards.
+- Short transitions for buttons and navigation.
+- Carefully timed hero animation.
+- Subtle gradient movement only in selected areas.
+- Smooth modal and mobile-menu transitions.
+
+Avoid:
+
+- Excessive scroll hijacking.
+- Unnecessary page-wide motion.
+- Constantly flashing gradients.
+- Large movement on every card.
+- Animations that delay access to content.
+- Animations that interfere with reading or keyboard interaction.
+
+Respect `prefers-reduced-motion`. Provide accessible alternatives for animated artwork and ensure essential content never depends on animation to appear.
+
+Use lazy loading or deferred initialization for expensive 3D content when appropriate. Keep mobile performance in mind.
+
+---
+
+# 10. Responsive Design
+
+The entire site must be tested across desktop, tablet, and mobile layouts.
+
+## Desktop
+
+Preserve the spacious editorial composition, large hero typography, wide visual artwork, and balanced section layouts.
+
+## Tablet
+
+Adjust navigation, typography, card grids, artwork dimensions, and section spacing without losing the design hierarchy.
+
+## Mobile
+
+- Use a compact logo and accessible mobile menu.
+- Stack content logically.
+- Reposition hero artwork so it does not obscure the headline or CTAs.
+- Reduce decorative complexity where necessary.
+- Use appropriately sized typography and touch targets.
+- Prevent horizontal overflow.
+- Avoid oversized fixed-height hero sections.
+- Ensure cards, modals, forms, and buttons remain usable.
+- Preserve the identity of the desktop design without merely shrinking it.
+
+Test narrow mobile widths, including approximately 320–375 pixels, as well as larger phones and tablets.
+
+---
+
+# 11. Accessibility, Contrast, and Readability
+
+The visual update must remain usable.
+
+- Maintain readable text contrast in both themes.
+- Do not place low-contrast text over complex artwork.
+- Use proper semantic headings.
+- Add accessible labels to controls.
+- Maintain visible keyboard focus.
+- Support keyboard navigation for menus, dialogs, and interactive cards.
+- Provide meaningful alternative text for informative images.
+- Mark purely decorative images and graphics appropriately.
+- Do not use color alone to communicate status.
+- Ensure form errors and status messages are accessible.
+- Avoid overly small technical labels, particularly on mobile.
+
+Use gradient text only where contrast and legibility remain sufficient.
+
+---
+
+# 12. Technical Implementation and Design Tokens
+
+Before editing, inspect the existing repository and understand its architecture.
+
+The project currently uses React, TypeScript, Vite, Tailwind CSS, Framer Motion, and Three.js. Preserve the existing stack unless there is a concrete technical reason to change something.
+
+Inspect the actual files and configuration before making changes.
+
+Relevant existing areas include:
+
+- `src/data/site-content.ts`
+- `src/components/hero/HeroSection.tsx`
+- `src/components/sections/ToolsProductsSection.tsx`
+- `src/components/sections/StudioSection.tsx`
+- Existing navigation, footer, services, project, journal, and theme components.
+- Global styles, Tailwind configuration, typography configuration, and application entry points.
+
+Verify the actual file paths rather than assuming every component exists under these exact names.
+
+## Centralize the theme
+
+Define reusable CSS variables or the project's existing equivalent for:
+
+- Brand colors.
+- Light and dark surfaces.
+- Text colors.
+- Borders.
+- Gradient presets.
+- Shadows.
+- Radii.
+- Spacing.
+- Typography scale.
+- Transition durations.
+- Focus rings.
+- Layering and z-index values.
+
+Use the project's current theme architecture if it already supports these needs.
+
+Avoid scattering arbitrary hex values throughout components. Keep the implementation maintainable and make future brand updates possible by changing a centralized token system.
+
+Create shared UI variants where they reduce duplication, but do not introduce unnecessary abstractions for one-off visual elements.
+
+Avoid adding large dependencies when existing packages can handle the task.
+
+---
+
+# 13. Logo Replacement Readiness
+
+The updated logo files will be provided later.
+
+For now:
+
+- Keep the current repository logo assets.
+- Identify where the logo is used across the website.
+- Centralize the logo references in a shared component or configuration if practical.
+- Preserve existing logo variants and their correct proportions.
+- Ensure the logo has enough contrast on light and dark surfaces.
+- Do not replace it with a generated image, emoji, text approximation, or an invented file path.
+
+When the new logo arrives, it should be possible to replace the asset and update any necessary light/dark variants without restructuring the site.
+
+---
+
+# 14. SEO, Metadata, and Brand Consistency
+
+Update metadata where necessary to reflect PeerUp's positioning.
+
+- Browser title.
+- Meta description.
+- Open Graph title and description.
+- Social-sharing image references, if suitable existing assets are available.
+- Favicon references, without inventing new files.
+- Page-specific titles and descriptions where applicable.
+
+Use accurate descriptions of PeerUp as a founder-led product initiative. Do not claim that the business is legally incorporated unless confirmed.
+
+Preserve working URLs and ensure internal links point to valid sections or routes.
+
+---
+
+# 15. Implementation Workflow
+
+Follow this sequence.
+
+### Phase 1 — Audit
+
+Inspect the repository, identify all routes and visible sections, locate shared components, and understand the current theme implementation.
+
+Create a checklist of all places that use the existing color palette, typography, gradients, shadows, and backgrounds.
+
+### Phase 2 — Foundation
+
+Implement the central color tokens, gradient presets, typography scale, spacing rules, borders, shadows, and theme-aware component styles.
+
+Ensure light and dark modes work before styling every section individually.
+
+### Phase 3 — Homepage
+
+Update the header, hero artwork, headline, CTAs, background atmosphere, and all homepage sections to match the approved visual reference.
+
+### Phase 4 — Remaining website
+
+Update product listings, Labs, About, Services, selected work, journal, contact, footer, modals, navigation overlays, and every other existing route or section.
+
+### Phase 5 — Responsive and interaction testing
+
+Test desktop, tablet, and mobile layouts. Verify theme switching, menus, forms, project filters, product links, modal interactions, and section navigation.
+
+### Phase 6 — Verification
+
+Run the available TypeScript checks, linting commands, and production build using the repository's existing scripts.
+
+Fix any regressions caused by the update. Inspect the resulting changes and confirm that existing working functionality has not been removed.
+
+---
+
+# 16. Acceptance Criteria
+
+The work is complete only when all the following conditions are satisfied.
+
+1. The complete website consistently uses the new cyan, blue, violet, and magenta brand palette.
+2. The light theme uses a clean, near-white visual foundation with subtle ambient gradients.
+3. The dark theme uses a coordinated deep-navy palette.
+4. The homepage hero matches the approved design direction, including the dimensional artwork and gradient atmosphere.
+5. Every existing section, modal, form, card, and navigation interface has been audited and updated.
+6. No obvious leftover bronze/cream styling remains unless intentionally retained as part of an existing image or asset.
+7. The current logo assets remain in use until replacement files are provided.
+8. The website remains responsive and accessible.
+9. Existing functional behavior is preserved.
+10. No fake product links, waitlist success states, testimonials, metrics, or other unverified claims are introduced.
+11. The codebase uses centralized theme tokens and consistent component styling.
+12. The TypeScript checks and production build pass, or any pre-existing failures are documented clearly.
+
+## Final instruction
+
+Implement the theme changes directly in the existing repository. Do not stop at a design proposal, a moodboard, a screenshot, or a new homepage component. Update the actual application.
+
+Prioritize visual consistency, quality, readability, performance, and maintainability. Match the approved PeerUp moodboard as closely as the existing architecture allows while keeping the website practical and production-ready.
+
+When finished, provide a concise report listing the files changed, the sections updated, the design tokens introduced, the tests/build results, and any remaining limitations or assets that still need to be supplied.

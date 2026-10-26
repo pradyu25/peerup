@@ -37,19 +37,21 @@ export const ContactSection: React.FC = () => {
       const cx = width / 2;
       const cy = height / 2;
 
-      // Draw Glowing Torus / Particle Accelerator Ring
+      // Draw Glowing Torus / Particle Accelerator Ring with electric palette
       const rings = 12;
       for (let r = 0; r < rings; r++) {
         const rad = 70 + r * 14;
         const tilt = Math.sin(t * 0.3 + r * 0.2) * 0.4;
         ctx.beginPath();
         ctx.ellipse(cx, cy, rad, rad * 0.55 + tilt * 20, t * 0.15 + r * 0.1, 0, Math.PI * 2);
-        ctx.strokeStyle = r % 3 === 0
-          ? 'rgba(179, 154, 115, 0.45)'
-          : isDark
-            ? 'rgba(242, 240, 233, 0.12)'
-            : 'rgba(36, 35, 33, 0.12)';
-        ctx.lineWidth = 1.2;
+        if (r % 3 === 0) {
+          ctx.strokeStyle = 'rgba(0, 217, 245, 0.45)'; // Electric Cyan
+        } else if (r % 3 === 1) {
+          ctx.strokeStyle = 'rgba(7, 91, 255, 0.35)'; // Electric Blue
+        } else {
+          ctx.strokeStyle = isDark ? 'rgba(112, 43, 255, 0.28)' : 'rgba(112, 43, 255, 0.22)'; // Electric Violet
+        }
+        ctx.lineWidth = 1.3;
         ctx.stroke();
       }
 
@@ -64,16 +66,16 @@ export const ContactSection: React.FC = () => {
 
         if (p % 4 === 0) {
           ctx.font = '10px "JetBrains Mono", monospace';
-          ctx.fillStyle = p % 2 === 0
-            ? '#B39A73'
-            : isDark
-              ? 'rgba(242, 240, 233, 0.7)'
-              : 'rgba(36, 35, 33, 0.7)';
+          ctx.fillStyle = p % 3 === 0
+            ? '#00D9F5'
+            : p % 3 === 1
+              ? '#075BFF'
+              : '#702BFF';
           ctx.fillText(chars[p % chars.length], px, py);
         } else {
           ctx.beginPath();
-          ctx.arc(px, py, 1.2, 0, Math.PI * 2);
-          ctx.fillStyle = isDark ? 'rgba(242, 240, 233, 0.5)' : 'rgba(36, 35, 33, 0.4)';
+          ctx.arc(px, py, 1.4, 0, Math.PI * 2);
+          ctx.fillStyle = p % 3 === 0 ? '#00D9F5' : isDark ? 'rgba(245, 247, 255, 0.6)' : 'rgba(15, 18, 33, 0.5)';
           ctx.fill();
         }
       }
@@ -94,6 +96,19 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Save inquiry to localStorage for local browser persistence
+    try {
+      const existing = JSON.parse(localStorage.getItem('peerup_contact_inquiries') || '[]');
+      existing.push({
+        ...formData,
+        date: new Date().toISOString()
+      });
+      localStorage.setItem('peerup_contact_inquiries', JSON.stringify(existing));
+    } catch {
+      // LocalStorage fallback
+    }
+
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmissionSuccess(true);
@@ -112,15 +127,25 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#EAE7E0] dark:bg-[#111110] text-[#111110] dark:text-[#F2F0E9] py-24 md:py-32 relative overflow-hidden transition-colors duration-400">
+    <section id="contact" className="bg-[#FAFAFC] dark:bg-[#050712] text-[#0F1221] dark:text-[#F5F7FF] py-24 md:py-32 relative overflow-hidden transition-colors duration-400 border-b border-[#E3E8F0] dark:border-[#293451]">
+      {/* Ambient gradient lighting */}
+      <div 
+        aria-hidden="true" 
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[400px] ambient-glow-cyan pointer-events-none -z-10 blur-3xl opacity-50 dark:opacity-30" 
+      />
+      <div 
+        aria-hidden="true" 
+        className="absolute bottom-10 left-1/4 w-[400px] h-[300px] ambient-glow-magenta pointer-events-none -z-10 blur-3xl opacity-40 dark:opacity-20" 
+      />
+
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-neutral-300 dark:border-neutral-800 gap-4">
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">
-            / 06 CONTACT
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-[#E3E8F0] dark:border-[#293451] gap-4">
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
+            / 05 CONTACT & INQUIRIES
           </div>
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 dark:text-neutral-400 uppercase">
-            IDEAS / PEOPLE / PRODUCTS / A BRIGHTER TOMORROW
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
+            IDEAS / PRODUCTS / VENTURES / SUSTAINABLE BUSINESSES
           </div>
         </div>
 
@@ -129,21 +154,21 @@ export const ContactSection: React.FC = () => {
           {/* Left Column */}
           <div className="lg:col-span-7 space-y-8">
             <div className="flex items-center gap-3">
-              <span className="w-8 h-px bg-neutral-400 dark:bg-neutral-600" />
-              <p className="font-mono-tech text-xs tracking-widest uppercase text-neutral-500 dark:text-neutral-400">
-                LET'S BUILD TOGETHER
+              <span className="w-8 h-0.5 bg-gradient-to-r from-[#00D9F5] to-[#702BFF] rounded-full" />
+              <p className="font-mono-tech text-xs tracking-widest uppercase text-[#5D6680] dark:text-[#A7B2CD]">
+                GET IN TOUCH
               </p>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#111110] dark:text-white leading-tight">
-              Have something<br />
-              <span className="font-editorial italic font-normal text-[#111110] dark:text-white">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#0F1221] dark:text-[#F5F7FF] leading-tight">
+              Have a product idea<br />
+              <span className="font-editorial italic font-normal text-[#0F1221] dark:text-[#F5F7FF]">
                 worth building?
               </span>
             </h2>
 
-            <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-300 font-normal leading-relaxed max-w-lg">
-              Tell us about your idea, project or challenge. We'd love to explore how we can work together.
+            <p className="text-sm md:text-base text-[#5D6680] dark:text-[#A7B2CD] font-normal leading-relaxed max-w-lg">
+              Whether you're interested in our products, developer tools, or exploring technical commissions, we'd love to connect.
             </p>
 
             {/* Actions */}
@@ -151,20 +176,20 @@ export const ContactSection: React.FC = () => {
               <button
                 onClick={() => setIsModalOpen(true)}
                 type="button"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B39A73]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full btn-brand-gradient text-xs font-semibold tracking-wide hover:opacity-95 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D9F5]"
               >
-                <span>Start a conversation</span>
-                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
+                <span>Send message</span>
+                <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-white" />
               </button>
 
               <button
                 onClick={handleCopyEmail}
                 type="button"
-                className="font-mono-tech text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors underline underline-offset-4 flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+                className="font-mono-tech text-xs text-[#5D6680] dark:text-[#A7B2CD] hover:text-[#075BFF] dark:hover:text-[#00D9F5] transition-colors underline underline-offset-4 flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5]"
                 title="Click to copy email address"
               >
                 <span>{SITE_METADATA.contactEmail}</span>
-                {copied ? <Check size={14} className="text-[#B39A73]" /> : <Copy size={13} />}
+                {copied ? <Check size={14} className="text-[#00D9F5]" /> : <Copy size={13} />}
               </button>
             </div>
           </div>
@@ -178,12 +203,12 @@ export const ContactSection: React.FC = () => {
         </div>
 
         {/* Bottom Details Strip */}
-        <div className="pt-8 border-t border-neutral-300 dark:border-neutral-800 flex flex-wrap justify-between items-center text-xs font-mono-tech text-neutral-500 dark:text-neutral-400 gap-4">
+        <div className="pt-8 border-t border-[#E3E8F0] dark:border-[#293451] flex flex-wrap justify-between items-center text-xs font-mono-tech text-[#5D6680] dark:text-[#A7B2CD] gap-4">
           <div>
-            HYDERABAD, INDIA · WORKING EVERYWHERE
+            HYDERABAD, INDIA · WORKING GLOBALLY
           </div>
-          <div>
-            EST. 2019 — PEERUP COLLECTIVE
+          <div className="text-[#075BFF] dark:text-[#00D9F5] font-semibold">
+            EST. 2024 — PEERUP PRODUCT LAB & VENTURES
           </div>
         </div>
       </div>
@@ -193,26 +218,26 @@ export const ContactSection: React.FC = () => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/60 dark:bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#050712]/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="bg-[#F2F0E9] dark:bg-[#1A1918] text-[#111110] dark:text-[#F2F0E9] w-full max-w-xl rounded-sm border border-neutral-300 dark:border-neutral-700 shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
+            className="bg-[#FAFAFC] dark:bg-[#0A0F2C] text-[#0F1221] dark:text-[#F5F7FF] w-full max-w-xl rounded-sm border border-[#E3E8F0] dark:border-[#293451] shadow-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4">
+            <div className="flex items-start justify-between border-b border-[#E3E8F0] dark:border-[#293451] pb-4">
               <div>
-                <span className="font-mono-tech text-xs text-[#B39A73] tracking-widest uppercase">
+                <span className="font-mono-tech text-xs text-[#00D9F5] tracking-widest uppercase">
                   START A PROJECT
                 </span>
-                <h3 className="text-2xl font-bold font-display tracking-tight text-[#111110] dark:text-white mt-1">
+                <h3 className="text-2xl font-bold font-display tracking-tight text-[#0F1221] dark:text-[#F5F7FF] mt-1">
                   Tell us about your challenge
                 </h3>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
                 aria-label="Close modal"
-                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+                className="w-8 h-8 rounded-full border border-[#E3E8F0] dark:border-[#293451] hover:border-[#075BFF] dark:hover:border-[#00D9F5] flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5]"
               >
                 <X size={16} />
               </button>
@@ -220,11 +245,11 @@ export const ContactSection: React.FC = () => {
 
             {submissionSuccess ? (
               <div className="py-12 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-[#B39A73]/20 text-[#B39A73] flex items-center justify-center mx-auto">
+                <div className="w-12 h-12 rounded-full bg-[#00D9F5]/20 text-[#00D9F5] flex items-center justify-center mx-auto">
                   <Check size={24} />
                 </div>
-                <h4 className="text-xl font-bold font-display text-[#111110] dark:text-white">Inquiry Received</h4>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 font-mono-tech max-w-sm mx-auto">
+                <h4 className="text-xl font-bold font-display text-[#0F1221] dark:text-[#F5F7FF]">Inquiry Received</h4>
+                <p className="text-xs text-[#5D6680] dark:text-[#A7B2CD] font-mono-tech max-w-sm mx-auto">
                   Thank you for reaching out. We review all inquiries carefully and will get back to you within 24–48 hours.
                 </p>
               </div>
@@ -232,7 +257,7 @@ export const ContactSection: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider mb-1.5">
+                    <label className="block font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] uppercase tracking-wider mb-1.5">
                       Your Name
                     </label>
                     <input
@@ -241,11 +266,11 @@ export const ContactSection: React.FC = () => {
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-white dark:bg-[#111110] border border-neutral-300 dark:border-neutral-700 rounded-xs px-3.5 py-2.5 text-xs text-[#111110] dark:text-white focus:outline-none focus:border-[#B39A73]"
+                      className="w-full bg-white dark:bg-[#10182F] border border-[#E3E8F0] dark:border-[#293451] rounded-xs px-3.5 py-2.5 text-xs text-[#0F1221] dark:text-[#F5F7FF] focus:outline-none focus:border-[#00D9F5]"
                     />
                   </div>
                   <div>
-                    <label className="block font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider mb-1.5">
+                    <label className="block font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] uppercase tracking-wider mb-1.5">
                       Work Email
                     </label>
                     <input
@@ -254,19 +279,19 @@ export const ContactSection: React.FC = () => {
                       placeholder="jane@company.com"
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white dark:bg-[#111110] border border-neutral-300 dark:border-neutral-700 rounded-xs px-3.5 py-2.5 text-xs text-[#111110] dark:text-white focus:outline-none focus:border-[#B39A73]"
+                      className="w-full bg-white dark:bg-[#10182F] border border-[#E3E8F0] dark:border-[#293451] rounded-xs px-3.5 py-2.5 text-xs text-[#0F1221] dark:text-[#F5F7FF] focus:outline-none focus:border-[#00D9F5]"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider mb-1.5">
+                  <label className="block font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] uppercase tracking-wider mb-1.5">
                     Engagement Category
                   </label>
                   <select
                     value={formData.projectType}
                     onChange={e => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-white dark:bg-[#111110] border border-neutral-300 dark:border-neutral-700 rounded-xs px-3.5 py-2.5 text-xs text-[#111110] dark:text-white focus:outline-none focus:border-[#B39A73]"
+                    className="w-full bg-white dark:bg-[#10182F] border border-[#E3E8F0] dark:border-[#293451] rounded-xs px-3.5 py-2.5 text-xs text-[#0F1221] dark:text-[#F5F7FF] focus:outline-none focus:border-[#00D9F5]"
                   >
                     <option value="Web & Digital Experiences">Web & Digital Experiences</option>
                     <option value="Brand & Design System">Brand & Design System</option>
@@ -276,13 +301,13 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider mb-1.5">
+                  <label className="block font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] uppercase tracking-wider mb-1.5">
                     Estimated Budget Range
                   </label>
                   <select
                     value={formData.budget}
                     onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full bg-white dark:bg-[#111110] border border-neutral-300 dark:border-neutral-700 rounded-xs px-3.5 py-2.5 text-xs text-[#111110] dark:text-white focus:outline-none focus:border-[#B39A73]"
+                    className="w-full bg-white dark:bg-[#10182F] border border-[#E3E8F0] dark:border-[#293451] rounded-xs px-3.5 py-2.5 text-xs text-[#0F1221] dark:text-[#F5F7FF] focus:outline-none focus:border-[#00D9F5]"
                   >
                     <option value="$10k - $25k">$10k – $25k</option>
                     <option value="$25k - $50k">$25k – $50k</option>
@@ -292,7 +317,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider mb-1.5">
+                  <label className="block font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] uppercase tracking-wider mb-1.5">
                     Project Overview
                   </label>
                   <textarea
@@ -301,14 +326,14 @@ export const ContactSection: React.FC = () => {
                     placeholder="Tell us about the problem, timeline, and what you aim to achieve..."
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white dark:bg-[#111110] border border-neutral-300 dark:border-neutral-700 rounded-xs px-3.5 py-2.5 text-xs text-[#111110] dark:text-white focus:outline-none focus:border-[#B39A73]"
+                    className="w-full bg-white dark:bg-[#10182F] border border-[#E3E8F0] dark:border-[#293451] rounded-xs px-3.5 py-2.5 text-xs text-[#0F1221] dark:text-[#F5F7FF] focus:outline-none focus:border-[#00D9F5]"
                   />
                 </div>
 
                 <div className="pt-2 flex items-center justify-between">
                   <a
                     href={`mailto:${SITE_METADATA.contactEmail}?subject=Project%20Inquiry%20via%20PeerUp`}
-                    className="font-mono-tech text-[11px] text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white underline underline-offset-4"
+                    className="font-mono-tech text-[11px] text-[#5D6680] dark:text-[#A7B2CD] hover:text-[#075BFF] dark:hover:text-[#00D9F5] underline underline-offset-4"
                   >
                     Or open email client
                   </a>
@@ -316,14 +341,14 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold hover:opacity-90 active:scale-95 transition-all cursor-pointer disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full btn-brand-gradient text-xs font-semibold hover:opacity-95 active:scale-95 transition-all cursor-pointer disabled:opacity-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5]"
                   >
                     {isSubmitting ? (
                       <span>Submitting...</span>
                     ) : (
                       <>
                         <span>Submit inquiry</span>
-                        <Send size={13} className="text-[#B39A73]" />
+                        <Send size={13} className="text-white" />
                       </>
                     )}
                   </button>

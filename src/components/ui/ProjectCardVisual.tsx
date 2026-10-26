@@ -24,15 +24,16 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
       ctx.clearRect(0, 0, width, height);
 
       if (projectId === 'voicenote') {
-        // Deep charcoal background
+        // Deep midnight navy background with cyan/violet ambient lighting
         const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-        bgGrad.addColorStop(0, '#111110');
-        bgGrad.addColorStop(1, '#1A1918');
+        bgGrad.addColorStop(0, '#050712');
+        bgGrad.addColorStop(0.5, '#0A0F2C');
+        bgGrad.addColorStop(1, '#10182F');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // Soundwave ribbon in space
-        ctx.lineWidth = 1.5;
+        // Soundwave ribbon in space using brand gradient hues
+        ctx.lineWidth = 1.6;
         const waves = 18;
         for (let w = 0; w < waves; w++) {
           ctx.beginPath();
@@ -47,21 +48,29 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
             ctx.lineTo(x, baseY + amp);
           }
 
-          const alpha = 0.15 + (1 - Math.abs(progress - 0.5) * 2) * 0.7;
-          ctx.strokeStyle = `rgba(242, 240, 233, ${alpha * 0.8})`;
+          const alpha = 0.2 + (1 - Math.abs(progress - 0.5) * 2) * 0.7;
+          // Gradient hue transition from cyan to violet
+          if (w % 3 === 0) {
+            ctx.strokeStyle = `rgba(0, 217, 245, ${alpha * 0.9})`; // Electric Cyan
+          } else if (w % 3 === 1) {
+            ctx.strokeStyle = `rgba(7, 91, 255, ${alpha * 0.8})`; // Electric Blue
+          } else {
+            ctx.strokeStyle = `rgba(112, 43, 255, ${alpha * 0.75})`; // Electric Violet
+          }
           ctx.stroke();
         }
 
         // Technical audio scale markers
-        ctx.fillStyle = 'rgba(242, 240, 233, 0.4)';
+        ctx.fillStyle = 'rgba(0, 217, 245, 0.6)';
         ctx.font = '16px "JetBrains Mono", monospace';
         ctx.fillText('0.00ms // 48kHz PCM', 40, height - 35);
+        ctx.fillStyle = 'rgba(245, 247, 255, 0.5)';
         ctx.fillText('INFERENCE LATENCY: 14ms', width - 240, height - 35);
       } else if (projectId === 'financedesk') {
-        // Soft warm paper travertine gradient
+        // Futuristic ledger gradient
         const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-        bgGrad.addColorStop(0, '#EAE7E0');
-        bgGrad.addColorStop(1, '#D9D5CC');
+        bgGrad.addColorStop(0, '#0A0F2C');
+        bgGrad.addColorStop(1, '#050712');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
@@ -70,10 +79,10 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
         const cy = height / 2 + 10;
         const size = 95 + (isHovered ? 6 : 0);
 
-        // Shadow
+        // Glow shadow
         ctx.beginPath();
         ctx.ellipse(cx, cy + size * 0.9, size * 1.1, size * 0.35, 0, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(36, 35, 33, 0.18)';
+        ctx.fillStyle = 'rgba(0, 217, 245, 0.15)';
         ctx.fill();
 
         // 3D Isometric Cube faces
@@ -85,9 +94,9 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           ctx.lineTo(cx, cy + size * 0.4);
           ctx.lineTo(cx - size * 0.86, cy - size * 0.1);
           ctx.closePath();
-          ctx.fillStyle = '#FFFFFF';
+          ctx.fillStyle = '#10182F';
           ctx.fill();
-          ctx.strokeStyle = 'rgba(36, 35, 33, 0.15)';
+          ctx.strokeStyle = 'rgba(0, 217, 245, 0.4)';
           ctx.lineWidth = 1.5;
           ctx.stroke();
 
@@ -98,7 +107,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           ctx.lineTo(cx, cy + size * 1.0);
           ctx.lineTo(cx - size * 0.86, cy + size * 0.5);
           ctx.closePath();
-          ctx.fillStyle = '#B39A73'; // Subdued bronze
+          ctx.fillStyle = '#075BFF'; // Electric Blue
           ctx.fill();
           ctx.stroke();
 
@@ -109,33 +118,33 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           ctx.lineTo(cx + size * 0.86, cy + size * 0.5);
           ctx.lineTo(cx, cy + size * 1.0);
           ctx.closePath();
-          ctx.fillStyle = '#242321';
+          ctx.fillStyle = '#702BFF'; // Electric Violet
           ctx.fill();
           ctx.stroke();
 
           // Glowing display ring on top face
           ctx.beginPath();
           ctx.ellipse(cx, cy - size * 0.1, size * 0.32, size * 0.18, 0, 0, Math.PI * 2);
-          ctx.fillStyle = '#111110';
+          ctx.fillStyle = '#050712';
           ctx.fill();
 
           ctx.beginPath();
           ctx.ellipse(cx, cy - size * 0.1, size * 0.22, size * 0.12, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = '#B39A73'; // Subdued bronze
+          ctx.strokeStyle = '#00D9F5'; // Electric Cyan
           ctx.lineWidth = 2.5;
           ctx.stroke();
         };
 
         drawIsoCube();
 
-        ctx.fillStyle = '#77736D';
+        ctx.fillStyle = 'rgba(0, 217, 245, 0.7)';
         ctx.font = '16px "JetBrains Mono", monospace';
-        ctx.fillText('SPATIAL_LEDGER // V1.0', 40, height - 35);
+        ctx.fillText('FINANCEDESK // V1.0', 40, height - 35);
       } else if (projectId === 'sxpress') {
-        // Dark stone and debossed paper sheets
+        // Dark navy and printing plates with cyan/violet accents
         const bgGrad = ctx.createLinearGradient(0, 0, width, height);
-        bgGrad.addColorStop(0, '#242321');
-        bgGrad.addColorStop(1, '#1A1918');
+        bgGrad.addColorStop(0, '#050712');
+        bgGrad.addColorStop(1, '#0A0F2C');
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, width, height);
 
@@ -152,29 +161,30 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           ctx.translate(cx + offset, cy + offset * 0.6);
           ctx.rotate((-0.08 + i * 0.04));
 
-          ctx.fillStyle = i === 0 ? '#F2F0E9' : i % 2 === 0 ? '#3A3835' : '#77736D';
+          ctx.fillStyle = i === 0 ? '#FAFAFC' : i % 2 === 0 ? '#10182F' : '#075BFF';
           ctx.fillRect(-w / 2, -h / 2, w, h);
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.strokeStyle = i === 0 ? 'rgba(0, 217, 245, 0.6)' : 'rgba(112, 43, 255, 0.3)';
           ctx.strokeRect(-w / 2, -h / 2, w, h);
 
           if (i === 0) {
             // Embossed typography specimen
-            ctx.fillStyle = '#111110';
+            ctx.fillStyle = '#0F1221';
             ctx.font = 'bold 24px "Manrope", sans-serif';
             ctx.fillText('SXPRESS', -w / 2 + 25, 0);
             ctx.font = 'italic 16px "Cormorant Garamond", serif';
-            ctx.fillText('CRAFT & PRODUCTION', -w / 2 + 25, 25);
+            ctx.fillStyle = '#075BFF';
+            ctx.fillText('RAPID PRODUCTION ENGINE', -w / 2 + 25, 25);
           }
 
           ctx.restore();
         }
 
-        ctx.fillStyle = '#A8A39A';
+        ctx.fillStyle = '#A7B2CD';
         ctx.font = '16px "JetBrains Mono", monospace';
-        ctx.fillText('BESPOKE PRINT // 350 GSM', 40, height - 35);
+        ctx.fillText('PRESS AUTOMATION // 350 GSM', 40, height - 35);
       } else if (projectId === 'synapse-core') {
-        // Neural Graph
-        ctx.fillStyle = '#111110';
+        // Neural Graph with electric cyan and magenta
+        ctx.fillStyle = '#050712';
         ctx.fillRect(0, 0, width, height);
 
         const nodes: { x: number; y: number }[] = [];
@@ -188,7 +198,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           });
         }
 
-        ctx.strokeStyle = 'rgba(242, 240, 233, 0.15)';
+        ctx.strokeStyle = 'rgba(7, 91, 255, 0.25)';
         ctx.lineWidth = 1;
         for (let i = 0; i < nodes.length; i++) {
           for (let j = i + 1; j < nodes.length; j++) {
@@ -204,15 +214,16 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
           }
         }
 
-        for (const node of nodes) {
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i];
           ctx.beginPath();
           ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = '#B39A73'; // Subdued bronze
+          ctx.fillStyle = i % 3 === 0 ? '#00D9F5' : i % 3 === 1 ? '#702BFF' : '#F000E8';
           ctx.fill();
         }
       } else {
-        // Kinesis dynamic kinetic curves
-        ctx.fillStyle = '#1A1918';
+        // Kinesis dynamic kinetic curves in electric brand gradient
+        ctx.fillStyle = '#050712';
         ctx.fillRect(0, 0, width, height);
 
         for (let i = 0; i < 20; i++) {
@@ -223,8 +234,9 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
             const sinY = Math.sin(x * 0.015 + t + i * 0.2) * 25;
             ctx.lineTo(x, y + sinY);
           }
-          ctx.strokeStyle = `rgba(179, 154, 115, ${0.1 + (i / 20) * 0.3})`;
-          ctx.lineWidth = 1.2;
+          const alpha = 0.15 + (i / 20) * 0.45;
+          ctx.strokeStyle = i % 2 === 0 ? `rgba(0, 217, 245, ${alpha})` : `rgba(112, 43, 255, ${alpha})`;
+          ctx.lineWidth = 1.3;
           ctx.stroke();
         }
       }
@@ -238,7 +250,7 @@ export const ProjectCardVisual: React.FC<ProjectCardVisualProps> = ({ projectId,
   }, [projectId, isHovered]);
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-neutral-900 rounded-sm">
+    <div className="w-full h-full relative overflow-hidden bg-[#050712] rounded-xs">
       <canvas ref={canvasRef} className="w-full h-full block object-cover" />
     </div>
   );

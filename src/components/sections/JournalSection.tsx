@@ -7,14 +7,14 @@ export const JournalSection: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
 
   return (
-    <section id="journal" className="py-24 md:py-32 border-b border-neutral-300/60 dark:border-neutral-800/60">
+    <section id="journal" className="py-24 md:py-32 border-b border-[#E3E8F0] dark:border-[#293451]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-neutral-300/60 dark:border-neutral-800/60 gap-4">
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 uppercase">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-[#E3E8F0] dark:border-[#293451] gap-4">
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
             / 05 JOURNAL
           </div>
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 uppercase">
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
             IDEAS / DISCUSSIONS / BEHIND THE SCENES
           </div>
         </div>
@@ -22,14 +22,14 @@ export const JournalSection: React.FC = () => {
         {/* Headline & Description */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12 items-end">
           <div className="lg:col-span-8 space-y-4">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-[#111110] dark:text-[#F2F0E9] leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-[#0F1221] dark:text-[#F5F7FF] leading-tight">
               Ideas,<br />
               updates and<br />
-              <span className="font-editorial italic font-normal text-[#111110] dark:text-[#F2F0E9]">
+              <span className="font-editorial italic font-normal text-[#0F1221] dark:text-[#F5F7FF]">
                 perspectives.
               </span>
             </h2>
-            <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed max-w-xl">
+            <p className="text-sm md:text-base text-[#5D6680] dark:text-[#A7B2CD] font-normal leading-relaxed max-w-xl">
               Thoughts on design, technology, products and the creative process from the PeerUp team.
             </p>
           </div>
@@ -38,10 +38,10 @@ export const JournalSection: React.FC = () => {
             <button
               onClick={() => setSelectedArticle(JOURNAL_ARTICLES[0])}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full btn-brand-gradient text-xs font-semibold tracking-wide hover:opacity-95 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D9F5]"
             >
               <span>Read the journal</span>
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-white" />
             </button>
           </div>
         </div>
@@ -61,29 +61,29 @@ export const JournalSection: React.FC = () => {
                 }
               }}
               onClick={() => setSelectedArticle(article)}
-              className="group cursor-pointer flex flex-col justify-between space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B39A73] rounded-xs p-1"
+              className="group cursor-pointer flex flex-col justify-between space-y-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D9F5] rounded-xs p-1"
             >
               {/* Visual Thumbnail */}
-              <div className="relative aspect-16/10 w-full overflow-hidden rounded-xs border border-neutral-300/60 dark:border-neutral-800/60 group-hover:-translate-y-1 transition-transform duration-500">
+              <div className="relative aspect-16/10 w-full overflow-hidden rounded-xs border border-[#E3E8F0] dark:border-[#293451] group-hover:-translate-y-1 transition-transform duration-500">
                 <JournalCardCanvas index={idx} />
-                <div className="absolute top-3 left-3 bg-[#111110]/85 text-[#F2F0E9] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest uppercase">
+                <div className="absolute top-3 left-3 bg-[#050712]/85 text-[#F5F7FF] px-2 py-0.5 rounded-xs font-mono-tech text-[10px] tracking-widest uppercase">
                   {article.category}
                 </div>
               </div>
 
               {/* Title & Date */}
               <div className="space-y-2 pt-1">
-                <h3 className="text-lg font-bold font-display text-[#111110] dark:text-[#F2F0E9] group-hover:text-[#B39A73] transition-colors leading-snug">
+                <h3 className="text-lg font-bold font-display text-[#0F1221] dark:text-[#F5F7FF] group-hover:text-[#075BFF] dark:group-hover:text-[#00D9F5] transition-colors leading-snug">
                   {article.title}
                 </h3>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-[#5D6680] dark:text-[#A7B2CD] line-clamp-2 leading-relaxed">
                   {article.excerpt}
                 </p>
-                <div className="pt-2 flex items-center justify-between font-mono-tech text-[11px] text-neutral-400">
+                <div className="pt-2 flex items-center justify-between font-mono-tech text-[11px] text-[#7C86A0]">
                   <span>{article.date}</span>
-                  <span className="flex items-center gap-1 group-hover:text-[#111110] dark:group-hover:text-[#F2F0E9] transition-colors">
+                  <span className="flex items-center gap-1 group-hover:text-[#075BFF] dark:group-hover:text-[#00D9F5] transition-colors">
                     <span>{article.readTime}</span>
-                    <ArrowUpRight size={12} className="text-[#B39A73]" />
+                    <ArrowUpRight size={12} className="text-[#00D9F5]" />
                   </span>
                 </div>
               </div>
@@ -97,16 +97,16 @@ export const JournalSection: React.FC = () => {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-[#111110]/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#050712]/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
           onClick={() => setSelectedArticle(null)}
         >
           <div
-            className="bg-[#F2F0E9] dark:bg-[#1A1918] text-[#111110] dark:text-[#F2F0E9] w-full max-w-2xl rounded-sm border border-neutral-300 dark:border-neutral-700 shadow-2xl p-6 sm:p-10 space-y-6 max-h-[90vh] overflow-y-auto"
+            className="bg-[#FAFAFC] dark:bg-[#0A0F2C] text-[#0F1221] dark:text-[#F5F7FF] w-full max-w-2xl rounded-sm border border-[#E3E8F0] dark:border-[#293451] shadow-2xl p-6 sm:p-10 space-y-6 max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4">
+            <div className="flex items-start justify-between border-b border-[#E3E8F0] dark:border-[#293451] pb-4">
               <div>
-                <span className="font-mono-tech text-xs text-[#B39A73] tracking-widest uppercase">
+                <span className="font-mono-tech text-xs text-[#00D9F5] tracking-widest uppercase">
                   {selectedArticle.category} · {selectedArticle.date}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight mt-1 leading-snug">
@@ -116,24 +116,24 @@ export const JournalSection: React.FC = () => {
               <button
                 onClick={() => setSelectedArticle(null)}
                 aria-label="Close article"
-                className="w-8 h-8 rounded-full border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 flex items-center justify-center transition-colors cursor-pointer shrink-0 ml-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+                className="w-8 h-8 rounded-full border border-[#E3E8F0] dark:border-[#293451] hover:border-[#075BFF] dark:hover:border-[#00D9F5] flex items-center justify-center transition-colors cursor-pointer shrink-0 ml-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5]"
               >
                 <X size={16} />
               </button>
             </div>
 
             {/* Article Content */}
-            <div className="space-y-5 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal">
+            <div className="space-y-5 text-sm sm:text-base text-[#5D6680] dark:text-[#A7B2CD] leading-relaxed font-normal">
               {selectedArticle.content.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
 
-            <div className="pt-6 border-t border-neutral-300 dark:border-neutral-800 flex justify-between items-center text-xs font-mono-tech text-neutral-500">
+            <div className="pt-6 border-t border-[#E3E8F0] dark:border-[#293451] flex justify-between items-center text-xs font-mono-tech text-[#7C86A0]">
               <span>PEERUP JOURNAL // {selectedArticle.readTime}</span>
               <button
                 onClick={() => setSelectedArticle(null)}
-                className="px-4 py-2 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+                className="px-5 py-2.5 rounded-full btn-brand-gradient font-semibold text-xs hover:opacity-95 transition-opacity cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5]"
               >
                 Done Reading
               </button>
@@ -145,7 +145,7 @@ export const JournalSection: React.FC = () => {
   );
 };
 
-// Procedural art renderer for journal cards matching moodboard
+// Procedural art renderer for journal cards matching brand moodboard
 const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -165,8 +165,11 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
       ctx.clearRect(0, 0, w, h);
 
       if (index === 0) {
-        // Warm paper origami folded ribbons
-        ctx.fillStyle = '#EAE7E0';
+        // Deep navy with electric cyan & blue ribbons
+        const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+        bgGrad.addColorStop(0, '#050712');
+        bgGrad.addColorStop(1, '#0A0F2C');
+        ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, w, h);
 
         const cx = w / 2;
@@ -184,14 +187,17 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
             cx + Math.cos(angle + 1) * 40,
             cy + Math.sin(angle + 1) * 40
           );
-          ctx.fillStyle = i % 2 === 0 ? 'rgba(217, 213, 204, 0.7)' : 'rgba(255, 255, 255, 0.85)';
+          ctx.fillStyle = i % 2 === 0 ? 'rgba(0, 217, 245, 0.45)' : 'rgba(7, 91, 255, 0.35)';
           ctx.fill();
-          ctx.strokeStyle = 'rgba(119, 115, 109, 0.2)';
+          ctx.strokeStyle = 'rgba(0, 217, 245, 0.6)';
           ctx.stroke();
         }
       } else if (index === 1) {
-        // Blooming organic metallic bloom
-        ctx.fillStyle = '#F2F0E9';
+        // Violet and cyan blooming geometry
+        const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+        bgGrad.addColorStop(0, '#0A0F2C');
+        bgGrad.addColorStop(1, '#10182F');
+        ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, w, h);
 
         const cx = w / 2;
@@ -207,14 +213,14 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
             else ctx.lineTo(x, y);
           }
           ctx.closePath();
-          ctx.fillStyle = r % 20 === 0 ? 'rgba(179, 154, 115, 0.25)' : 'rgba(36, 35, 33, 0.12)';
+          ctx.fillStyle = r % 20 === 0 ? 'rgba(112, 43, 255, 0.35)' : 'rgba(0, 217, 245, 0.18)';
           ctx.fill();
-          ctx.strokeStyle = 'rgba(179, 154, 115, 0.4)';
+          ctx.strokeStyle = 'rgba(0, 217, 245, 0.4)';
           ctx.stroke();
         }
       } else {
-        // Particle burst vortex
-        ctx.fillStyle = '#111110';
+        // Particle burst vortex with cyan, violet, and magenta
+        ctx.fillStyle = '#050712';
         ctx.fillRect(0, 0, w, h);
 
         const cx = w / 2;
@@ -227,8 +233,8 @@ const JournalCardCanvas: React.FC<{ index: number }> = ({ index }) => {
           const y = cy + Math.sin(angle) * (dist * 0.7);
 
           ctx.beginPath();
-          ctx.arc(x, y, 1.4, 0, Math.PI * 2);
-          ctx.fillStyle = p % 3 === 0 ? '#B39A73' : 'rgba(242, 240, 233, 0.6)';
+          ctx.arc(x, y, 1.6, 0, Math.PI * 2);
+          ctx.fillStyle = p % 3 === 0 ? '#00D9F5' : p % 3 === 1 ? '#702BFF' : '#F000E8';
           ctx.fill();
         }
       }

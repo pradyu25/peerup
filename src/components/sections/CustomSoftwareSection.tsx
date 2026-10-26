@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Cpu, Layers, Database, Shield, Zap, GitBranch } from 'lucide-react';
+import { ArrowUpRight, Cpu, Layers, Database, Zap, GitBranch } from 'lucide-react';
 
 interface CustomSoftwareSectionProps {
   onDiscussProject?: () => void;
@@ -40,14 +40,14 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
   ];
 
   return (
-    <section id="custom-software" className="py-24 md:py-32 border-b border-neutral-300/60 dark:border-neutral-800/60">
+    <section id="custom-software" className="py-24 md:py-32 border-b border-[#E3E8F0] dark:border-[#293451]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-neutral-300/60 dark:border-neutral-800/60 gap-4">
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 uppercase">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-12 border-b border-[#E3E8F0] dark:border-[#293451] gap-4">
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
             SOFTWARE ENGINEERING
           </div>
-          <div className="font-mono-tech text-xs tracking-widest text-neutral-500 uppercase">
+          <div className="font-mono-tech text-xs tracking-widest text-[#5D6680] dark:text-[#A7B2CD] uppercase">
             RESILIENT ARCHITECTURES
           </div>
         </div>
@@ -55,13 +55,13 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
         {/* Section Headline */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 py-12 items-end">
           <div className="lg:col-span-8 space-y-4">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-[#111110] dark:text-[#F2F0E9] leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display tracking-tight text-[#0F1221] dark:text-[#F5F7FF] leading-tight">
               Software that fits{' '}
-              <span className="font-editorial italic font-normal text-[#111110] dark:text-[#F2F0E9]">
+              <span className="font-editorial italic font-normal text-[#0F1221] dark:text-[#F5F7FF]">
                 forward.
               </span>
             </h2>
-            <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 font-normal leading-relaxed max-w-xl">
+            <p className="text-sm md:text-base text-[#5D6680] dark:text-[#A7B2CD] font-normal leading-relaxed max-w-xl">
               Purpose-built software designed around real workflows, practical constraints, and what comes next.
             </p>
           </div>
@@ -70,10 +70,10 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
             <button
               onClick={onDiscussProject}
               type="button"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111110] text-[#F2F0E9] dark:bg-[#F2F0E9] dark:text-[#111110] text-xs font-semibold tracking-wide hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full btn-brand-gradient text-xs font-semibold tracking-wide hover:opacity-95 active:scale-95 transition-all cursor-pointer shadow-sm group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D9F5]"
             >
               <span>Discuss a software project</span>
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#B39A73]" />
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-white" />
             </button>
           </div>
         </div>
@@ -98,24 +98,24 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
                     }
                   }}
                   onClick={() => setActiveModule(idx)}
-                  className={`p-5 rounded-xs border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#B39A73] ${
+                  className={`p-5 rounded-xs border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#00D9F5] ${
                     isSelected
-                      ? 'border-[#B39A73] bg-neutral-200/40 dark:bg-neutral-800/40 shadow-xs'
-                      : 'border-neutral-300/60 dark:border-neutral-800/60 hover:border-neutral-400'
+                      ? 'border-[#00D9F5] bg-[#F2F4F8] dark:bg-[#10182F] shadow-xs'
+                      : 'border-[#E3E8F0] dark:border-[#293451] hover:border-[#075BFF]/50'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-3">
-                      <IconComp size={16} className={isSelected ? 'text-[#B39A73]' : 'text-neutral-400'} />
-                      <h4 className="text-sm font-bold font-display text-[#111110] dark:text-[#F2F0E9]">
+                      <IconComp size={16} className={isSelected ? 'text-[#00D9F5]' : 'text-[#7C86A0]'} />
+                      <h4 className="text-sm font-bold font-display text-[#0F1221] dark:text-[#F5F7FF]">
                         {mod.title}
                       </h4>
                     </div>
-                    <span className="font-mono-tech text-[10px] text-neutral-400 uppercase tracking-widest">
+                    <span className="font-mono-tech text-[10px] text-[#7C86A0] uppercase tracking-widest">
                       {mod.tag}
                     </span>
                   </div>
-                  <p className="text-xs text-neutral-600 dark:text-neutral-400 pl-7">
+                  <p className="text-xs text-[#5D6680] dark:text-[#A7B2CD] pl-7">
                     {mod.description}
                   </p>
                 </div>
@@ -124,34 +124,41 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
           </div>
 
           {/* Right: Technical Blueprint Console */}
-          <div className="lg:col-span-7 bg-[#EAE7E0]/70 dark:bg-[#111110] text-[#111110] dark:text-[#F2F0E9] p-6 sm:p-8 rounded-xs border border-neutral-300 dark:border-neutral-800 flex flex-col justify-between font-mono-tech relative overflow-hidden transition-colors">
+          <div className="lg:col-span-7 bg-[#050712] text-[#F5F7FF] p-6 sm:p-8 rounded-xs border border-[#293451] flex flex-col justify-between font-mono-tech relative overflow-hidden transition-colors shadow-lg">
+            {/* Ambient console glow */}
+            <div 
+              aria-hidden="true" 
+              className="absolute -top-12 -right-12 w-48 h-48 bg-[#00D9F5]/10 rounded-full blur-2xl pointer-events-none" 
+            />
+
             {/* Top Bar of Console */}
-            <div className="flex items-center justify-between border-b border-neutral-300 dark:border-neutral-800 pb-4 text-xs text-neutral-600 dark:text-neutral-400">
+            <div className="flex items-center justify-between border-b border-[#293451] pb-4 text-xs text-[#A7B2CD]">
               <div className="flex items-center gap-2">
-                <GitBranch size={14} className="text-[#B39A73]" />
-                <span>ARCH_MODULE // {modules[activeModule].tag}</span>
+                <GitBranch size={14} className="text-[#00D9F5]" />
+                <span className="text-[#00D9F5]">ARCH_MODULE // {modules[activeModule].tag}</span>
               </div>
-              <span className="text-[10px] text-neutral-500">PEERUP ENGINE SPEC v2.4</span>
+              <span className="text-[10px] text-[#7C86A0]">PEERUP ARCH SPEC 2024</span>
             </div>
 
             {/* Middle: Schematic Code & Architecture Layout */}
-            <div className="py-8 space-y-6">
+            <div className="py-8 space-y-6 relative z-10">
               <div className="space-y-2">
-                <span className="text-xs text-neutral-500 uppercase tracking-wider">Module Identification</span>
-                <h3 className="text-xl sm:text-2xl font-bold font-display text-[#111110] dark:text-white">
+                <span className="text-xs text-[#7C86A0] uppercase tracking-wider">Module Specification</span>
+                <h3 className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight">
                   {modules[activeModule].title}
                 </h3>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 font-sans leading-relaxed">
+                <p className="text-xs text-[#A7B2CD] font-sans leading-relaxed pt-1">
                   {modules[activeModule].description}
                 </p>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-neutral-300 dark:border-neutral-800/80">
-                <span className="text-xs text-[#B39A73] tracking-wider uppercase font-semibold">Key Engineering Specifications:</span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Stack Specs */}
+              <div className="pt-2">
+                <span className="text-[11px] text-[#7C86A0] uppercase tracking-wider block mb-3">Verified Tech Stack</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {modules[activeModule].specs.map((spec, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-xs text-[#111110] dark:text-neutral-300 bg-white/90 dark:bg-neutral-900/80 p-2.5 rounded-xs border border-neutral-300 dark:border-neutral-800 shadow-xs">
-                      <Shield size={12} className="text-[#B39A73] shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-[#A7B2CD] bg-[#0A0F2C] p-2.5 rounded-xs border border-[#293451]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00D9F5]" />
                       <span>{spec}</span>
                     </div>
                   ))}
@@ -159,16 +166,10 @@ export const CustomSoftwareSection: React.FC<CustomSoftwareSectionProps> = ({ on
               </div>
             </div>
 
-            {/* Bottom Status Bar */}
-            <div className="border-t border-neutral-300 dark:border-neutral-800 pt-4 flex justify-between items-center text-[10px] text-neutral-500">
-              <span>ZERO MOCK DATA · DIRECT ARCHITECTURE</span>
-              <button
-                onClick={onDiscussProject}
-                className="text-[#B39A73] hover:underline underline-offset-4 cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:text-[#B39A73]"
-              >
-                <span>INITIATE BLUEPRINT INQUIRY</span>
-                <ArrowUpRight size={12} />
-              </button>
+            {/* Bottom Terminal Status */}
+            <div className="pt-4 border-t border-[#293451] flex justify-between items-center text-[10px] text-[#7C86A0]">
+              <span className="text-[#00D9F5]">● LATENCY BUDGET: SUB-16MS</span>
+              <span>TYPE-SAFE × PRODUCTION TESTED</span>
             </div>
           </div>
         </div>

@@ -57,7 +57,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F2F0E9] dark:bg-[#111110] text-[#111110] dark:text-[#F2F0E9] selection:bg-[#242321] selection:text-[#F2F0E9] transition-colors duration-400 font-sans relative">
+    <div className="min-h-screen bg-[#FAFAFC] dark:bg-[#050712] text-[#0F1221] dark:text-[#F5F7FF] selection:bg-[#075BFF] selection:text-white transition-colors duration-400 font-sans relative">
       {/* Primary Header */}
       <SiteHeader
         onOpenMenu={() => setIsMenuOpen(true)}
@@ -77,51 +77,51 @@ export const AppContent: React.FC = () => {
         {/* Hero Section */}
         <ScrollReveal yOffset={24} duration={0.8}>
           <HeroSection
-            onStartProject={() => handleNavigate('contact')}
+            onStartProject={() => handleNavigate('studio')}
             onViewWork={() => handleNavigate('work')}
           />
         </ScrollReveal>
 
-        {/* 02 Selected Work */}
+        {/* 01 Featured Products */}
         <ScrollReveal yOffset={40} duration={0.8}>
           <SelectedWork />
         </ScrollReveal>
 
-        {/* 03 Studio */}
-        <ScrollReveal yOffset={40} duration={0.8}>
-          <StudioSection />
-        </ScrollReveal>
-
-        {/* 04 Approach */}
-        <ScrollReveal yOffset={40} duration={0.8}>
-          <ApproachSection />
-        </ScrollReveal>
-
-        {/* Software Engineering / Custom Software */}
-        <ScrollReveal yOffset={40} duration={0.8}>
-          <CustomSoftwareSection
-            onDiscussProject={() => handleNavigate('contact')}
-          />
-        </ScrollReveal>
-
-        {/* Digital Products & Internal Tools */}
+        {/* 02 Labs & Developer Toolkits */}
         <ScrollReveal yOffset={40} duration={0.8}>
           <ToolsProductsSection />
         </ScrollReveal>
 
-        {/* Capabilities & Services */}
+        {/* 03 About & Founder */}
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <StudioSection />
+        </ScrollReveal>
+
+        {/* 04 Venture Building Approach */}
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <ApproachSection />
+        </ScrollReveal>
+
+        {/* Technical Commissions & Advisory */}
         <ScrollReveal yOffset={40} duration={0.8}>
           <ServicesSection
             onInquireService={() => handleNavigate('contact')}
           />
         </ScrollReveal>
 
-        {/* 05 Journal */}
+        {/* Custom Software Solutions */}
+        <ScrollReveal yOffset={40} duration={0.8}>
+          <CustomSoftwareSection
+            onDiscussProject={() => handleNavigate('contact')}
+          />
+        </ScrollReveal>
+
+        {/* Journal & Perspectives */}
         <ScrollReveal yOffset={40} duration={0.8}>
           <JournalSection />
         </ScrollReveal>
 
-        {/* 06 Contact */}
+        {/* Contact & Inquiries */}
         <ScrollReveal yOffset={40} duration={0.8}>
           <ContactSection />
         </ScrollReveal>

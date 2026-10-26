@@ -18,8 +18,8 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 
   const logoStyle: React.CSSProperties = {
     filter: isDark
-      ? 'brightness(1.1) drop-shadow(0 0 8px rgba(197, 155, 39, 0.35))'
-      : 'contrast(1.05) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12))',
+      ? 'brightness(1.1) drop-shadow(0 0 10px rgba(0, 217, 245, 0.45))'
+      : 'contrast(1.05) drop-shadow(0 1px 3px rgba(15, 18, 33, 0.12))',
     objectFit: 'contain'
   };
 

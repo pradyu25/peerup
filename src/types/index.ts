@@ -1,14 +1,23 @@
 export type ThemeMode = 'light' | 'dark';
 
+export type ProductStatus = 'Live' | 'In Development' | 'Concept' | 'Beta';
+export type ProductPlatform = 'Web Application' | 'Android / Google Play' | 'iOS / App Store' | 'Desktop / macOS' | 'Developer Tool' | 'AI System';
+
 export interface Project {
   id: string;
   number: string;
   title: string;
   subtitle: string;
-  category: 'Digital Products' | 'AI & Automation' | 'Brand & Identity' | 'Web Experiences';
+  category: 'Digital Products' | 'AI & Automation' | 'Developer Tools' | 'Brand & Web';
+  platform: ProductPlatform;
+  status: ProductStatus;
   year: string;
   description: string;
-  clientType: string;
+  pricing?: string;
+  websiteUrl?: string;
+  downloadUrl?: string;
+  supportUrl?: string;
+  privacyPolicyUrl?: string;
   deliverables: string[];
   accentColor: string;
   imageAlt: string;
@@ -48,6 +57,21 @@ export interface ProductTool {
   tagline: string;
   description: string;
   badge: string;
-  status: 'Available' | 'Beta' | 'Concept';
+  status: ProductStatus;
+  platform?: ProductPlatform;
+  websiteUrl?: string;
+  downloadUrl?: string;
+  pricing?: string;
   features: string[];
 }
+
+export interface FounderProfile {
+  name: string;
+  title: string;
+  bio: string;
+  expertise: string[];
+  background: string;
+  location: string;
+  email: string;
+}
+

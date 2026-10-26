@@ -233,9 +233,18 @@ void main(){
   vHalfLen = len*0.5;
   vR = r;
   vec3 col = cl.rgb*uTint;
-  // fast material catches the light, like liquid champagne-silver
-  float glint = smoothstep(2.0, 16.0, sp);
-  col = mix(col, min(col*1.22 + vec3(0.09,0.085,0.07), vec3(1.0)), glint*0.8);
+  // Electric brand chromatic luminescence: cyan (#00D9F5), blue (#075BFF), violet (#702BFF), and magenta (#F000E8)
+  float gradPos = clamp(hm.x * 0.7 + hm.y * 0.3 + sin(uTime * 0.35 + hm.x * 6.28) * 0.2, 0.0, 1.0);
+  vec3 cCyan = vec3(0.0, 0.85, 0.96);       // #00D9F5
+  vec3 cBlue = vec3(0.027, 0.357, 1.0);    // #075BFF
+  vec3 cViolet = vec3(0.439, 0.169, 1.0);  // #702BFF
+  vec3 cMagenta = vec3(0.941, 0.0, 0.91);  // #F000E8
+  vec3 brandGlow = mix(mix(cCyan, cBlue, smoothstep(0.0, 0.35, gradPos)), mix(cViolet, cMagenta, smoothstep(0.65, 1.0, gradPos)), smoothstep(0.35, 0.65, gradPos));
+
+  float glint = smoothstep(1.5, 14.0, sp);
+  float aura = smoothstep(0.08, 0.7, E);
+  col = mix(col, brandGlow, (glint * 0.55 + aura * 0.35) * 0.75);
+  col = mix(col, min(col * 1.3 + brandGlow * 0.25, vec3(1.0)), glint * 0.6);
   vCol = col;
   vA = a;
 }
@@ -995,8 +1004,8 @@ export const GenerativeSculpture: React.FC<{
   // Asset selection based on authoritative site theme
   const isDark = theme === 'dark';
   const activeSrc = isDark ? '/images/sculpture-dark.webp' : '/images/sculpture-light.webp';
-  const bgColorHex = isDark ? '#111110' : '#F2F0E9';
-  const bgRgb = hexToRgb(bgColorHex, isDark ? [0.067, 0.067, 0.063] : [0.949, 0.941, 0.914]);
+  const bgColorHex = isDark ? '#050712' : '#FAFAFC';
+  const bgRgb = hexToRgb(bgColorHex, isDark ? [0.0196, 0.0274, 0.0706] : [0.980, 0.980, 0.988]);
 
   const relayout = useCallback(() => {
     const container = containerRef.current;

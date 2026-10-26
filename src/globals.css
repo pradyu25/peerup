@@ -4,41 +4,47 @@
 
 @layer base {
   :root {
-    --color-bg-primary: #F2F0E9;
-    --color-bg-secondary: #EAE7E0;
-    --color-bg-stone: #D9D5CC;
+    --color-bg-primary: #FAFAFC;
+    --color-bg-secondary: #F2F4F8;
+    --color-bg-stone: #E3E8F0;
     --color-surface: #FFFFFF;
     --color-surface-raised: #FFFFFF;
-    --color-text-primary: #242321;
-    --color-text-secondary: #77736D;
-    --color-text-muted: #A8A39A;
-    --color-border: #D9D5CC;
-    --color-border-subtle: rgba(36, 35, 33, 0.12);
-    --color-border-strong: rgba(36, 35, 33, 0.28);
-    --color-accent: #B39A73;
-    --color-btn-bg: #242321;
-    --color-btn-text: #F2F0E9;
+    --color-text-primary: #0F1221;
+    --color-text-secondary: #5D6680;
+    --color-text-muted: #7C86A0;
+    --color-border: #E3E8F0;
+    --color-border-subtle: rgba(15, 18, 33, 0.08);
+    --color-border-strong: rgba(15, 18, 33, 0.20);
+    --color-accent: #00D9F5;
+    --color-accent-blue: #075BFF;
+    --color-accent-violet: #702BFF;
+    --color-accent-magenta: #F000E8;
+    --color-btn-bg: #0F1221;
+    --color-btn-text: #FAFAFC;
     --color-input-bg: #FFFFFF;
-    --color-backdrop-text: rgba(36, 35, 33, 0.04);
+    --color-backdrop-text: rgba(15, 18, 33, 0.04);
   }
 
   .dark {
-    --color-bg-primary: #111110;
-    --color-bg-secondary: #1B1A18;
-    --color-bg-stone: #242321;
-    --color-surface: #1B1A18;
-    --color-surface-raised: #242321;
-    --color-text-primary: #F2F0E9;
-    --color-text-secondary: #A8A39A;
-    --color-text-muted: #77736D;
-    --color-border: #37352F;
-    --color-border-subtle: rgba(242, 240, 233, 0.10);
-    --color-border-strong: rgba(242, 240, 233, 0.22);
-    --color-accent: #B39A73;
-    --color-btn-bg: #F2F0E9;
-    --color-btn-text: #111110;
-    --color-input-bg: #1B1A18;
-    --color-backdrop-text: rgba(242, 240, 233, 0.05);
+    --color-bg-primary: #050712;
+    --color-bg-secondary: #0A0F2C;
+    --color-bg-stone: #10182F;
+    --color-surface: #0A0F2C;
+    --color-surface-raised: #10182F;
+    --color-text-primary: #F5F7FF;
+    --color-text-secondary: #A7B2CD;
+    --color-text-muted: #7C86A0;
+    --color-border: #293451;
+    --color-border-subtle: rgba(245, 247, 255, 0.08);
+    --color-border-strong: rgba(245, 247, 255, 0.20);
+    --color-accent: #00D9F5;
+    --color-accent-blue: #075BFF;
+    --color-accent-violet: #702BFF;
+    --color-accent-magenta: #F000E8;
+    --color-btn-bg: #F5F7FF;
+    --color-btn-text: #050712;
+    --color-input-bg: #0A0F2C;
+    --color-backdrop-text: rgba(245, 247, 255, 0.04);
   }
 
   * {
@@ -74,6 +80,41 @@
 
 .font-mono-tech {
   font-family: 'JetBrains Mono', monospace;
+}
+
+/* Electric Brand Gradients & Accents */
+.btn-brand-gradient {
+  background: linear-gradient(135deg, #00D9F5 0%, #075BFF 35%, #702BFF 70%, #F000E8 100%);
+  color: #FFFFFF;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-brand-gradient:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px -2px rgba(7, 91, 255, 0.45);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #00D9F5 0%, #075BFF 35%, #702BFF 70%, #F000E8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-brand-gradient {
+  border-image: linear-gradient(135deg, #00D9F5 0%, #075BFF 35%, #702BFF 70%, #F000E8 100%) 1;
+}
+
+/* Ambient Radial Glows */
+.ambient-glow-cyan {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 217, 245, 0.12) 0%, transparent 70%);
+}
+
+.ambient-glow-violet {
+  background: radial-gradient(circle at 50% 50%, rgba(112, 43, 255, 0.10) 0%, transparent 70%);
+}
+
+.ambient-glow-magenta {
+  background: radial-gradient(circle at 50% 50%, rgba(240, 0, 232, 0.08) 0%, transparent 70%);
 }
 
 /* Semantic utility classes */
@@ -113,16 +154,33 @@
   border-color: var(--color-border-subtle);
 }
 
+.text-accent-cyan {
+  color: #00D9F5;
+}
+
+.text-accent-blue {
+  color: #075BFF;
+}
+
+.text-accent-violet {
+  color: #702BFF;
+}
+
+.text-accent-magenta {
+  color: #F000E8;
+}
+
+/* Replaced bronze with electric brand accents */
 .text-bronze {
-  color: var(--color-accent);
+  color: #00D9F5;
 }
 
 .bg-bronze {
-  background-color: var(--color-accent);
+  background-color: #075BFF;
 }
 
 .border-bronze {
-  border-color: var(--color-accent);
+  border-color: #00D9F5;
 }
 
 /* Custom delicate scrollbar */
@@ -136,10 +194,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(119, 115, 109, 0.3);
+  background: rgba(93, 102, 128, 0.25);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(119, 115, 109, 0.5);
+  background: rgba(7, 91, 255, 0.45);
 }
